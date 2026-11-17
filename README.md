@@ -6,7 +6,7 @@
     <title>西方直轄無極紫蓮寺｜2027 丁未羊年 12生肖查詢與線上點燈祈福</title>
     <style>
         /* =========================================================
-           1. 全域變數與宣紙古典美學樣式 (無外部依賴，100% 穩定呈現)
+           1. 全域變數與宣紙古典美學樣式 (純原生 CSS，無外部依賴)
            ========================================================= */
         :root {
             --bg-paper: #FBF8F3;
@@ -63,7 +63,7 @@
         }
 
         /* =========================================================
-           2. 頂部導覽列 (手機雙層自適應排版，絕不截斷寺廟全銜)
+           2. 頂部導覽列 (手機雙層自適應排版，確保寺廟全銜完整顯示)
            ========================================================= */
         .site-header {
             position: sticky;
@@ -178,7 +178,6 @@
             transform: scale(0.97);
         }
 
-        /* 手機直向窄螢幕雙層自適應排版：確保寺廟全銜完整橫向展開不被壓縮 */
         @media (max-width: 640px) {
             .header-inner {
                 flex-direction: column;
@@ -345,7 +344,6 @@
             margin-top: 4px;
         }
 
-        /* 節氣提醒橫幅 */
         .solar-notice {
             background: #FFF9EB;
             border: 1px solid #E6C785;
@@ -431,7 +429,6 @@
             font-weight: 600;
         }
 
-        /* 12生肖靜態網格 */
         .zodiac-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -503,7 +500,6 @@
             color: #0B7A37;
         }
 
-        /* 生肖解析詳情面板 */
         .zodiac-detail-panel {
             background: linear-gradient(to bottom right, #FCF9F4, #F7F1F9);
             border: 1.5px solid #D9C6E0;
@@ -588,285 +584,82 @@
         }
 
         /* =========================================================
-           6. 紫蓮寺七大祈福聖燈選擇區 (主燈帶副燈)
+           6. 家庭／多人祈福報名卡片與獨立聖燈選擇區
            ========================================================= */
-        .quick-combo-bar {
+        .members-stack {
             display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            background: #FFF6F5;
-            border: 1px solid rgba(168, 50, 38, 0.25);
-            border-radius: var(--radius-md);
-            padding: 12px 14px;
-            margin-bottom: 18px;
-        }
-
-        .quick-combo-text {
-            font-size: 13px;
-            color: var(--red-cinnabar);
-            font-weight: 700;
-        }
-
-        .btn-combo-taisui {
-            padding: 8px 14px;
-            border: none;
-            border-radius: var(--radius-sm);
-            background: var(--red-cinnabar);
-            color: #FFFFFF;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .lamp-group-label {
-            font-size: 14px;
-            font-weight: 800;
-            color: var(--purple-deep);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* 主燈卡片 (光明燈) */
-        .main-lamp-card {
-            background: linear-gradient(135deg, #FFFDF7, #FFF5E0);
-            border: 2px solid var(--gold-warm);
-            border-radius: var(--radius-md);
-            padding: 16px;
+            flex-direction: column;
+            gap: 22px;
             margin-bottom: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            transition: all 0.2s;
         }
 
-        .main-lamp-card.lit {
-            background: linear-gradient(135deg, #FFF8E3, #FDE8C8);
-            border-color: var(--red-cinnabar);
-            box-shadow: 0 4px 16px rgba(197, 155, 73, 0.3);
-        }
-
-        /* 六大副燈網格 */
-        .sub-lamps-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            margin-bottom: 20px;
+        .member-card {
+            background: #FFFFFF;
+            border: 2px solid #D9C6E0;
+            border-radius: var(--radius-lg);
+            padding: 18px 14px;
+            box-shadow: 0 4px 14px rgba(74, 43, 85, 0.06);
+            position: relative;
         }
 
         @media (min-width: 640px) {
-            .sub-lamps-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .member-card {
+                padding: 22px 22px;
             }
         }
 
-        @media (min-width: 900px) {
-            .sub-lamps-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .sub-lamp-card {
-            background: #FFFFFF;
-            border: 1.5px solid var(--border-light);
-            border-radius: var(--radius-md);
-            padding: 14px;
+        .member-card-header {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 12px;
-            transition: all 0.2s;
-        }
-
-        .sub-lamp-card.locked {
-            background: #F5F2ED;
-            opacity: 0.72;
-            border-style: dashed;
-        }
-
-        .sub-lamp-card.lit {
-            background: var(--purple-light);
-            border-color: var(--purple-main);
-            box-shadow: 0 3px 12px rgba(91, 58, 102, 0.14);
-        }
-
-        .lamp-info-top {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .lamp-icon-badge {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            background: var(--bg-soft);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-
-        .lamp-title-row {
-            display: flex;
-            align-items: center;
-            gap: 6px;
             flex-wrap: wrap;
-        }
-
-        .lamp-name {
-            font-size: 16px;
-            font-weight: 800;
-            color: var(--ink-dark);
-        }
-
-        .lamp-price-tag {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--red-cinnabar);
-            background: rgba(168, 50, 38, 0.08);
-            padding: 1px 7px;
-            border-radius: 6px;
-        }
-
-        .lamp-desc {
-            font-size: 12.5px;
-            color: var(--ink-muted);
-            margin-top: 3px;
-        }
-
-        .lamp-control-row {
-            display: flex;
             align-items: center;
             justify-content: space-between;
-            padding-top: 8px;
-            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            gap: 10px;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            border-bottom: 1.5px solid var(--border-light);
         }
 
-        .lamp-lock-hint {
-            font-size: 11.5px;
+        .member-badge-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .member-number-pill {
+            background: linear-gradient(135deg, var(--purple-main), var(--purple-deep));
+            color: #FFE8A3;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 999px;
+            letter-spacing: 0.04em;
+        }
+
+        .member-role-hint {
+            font-size: 12.5px;
             color: var(--ink-muted);
             font-weight: 600;
         }
 
-        .qty-stepper {
-            display: inline-flex;
-            align-items: center;
-            background: #FFFFFF;
-            border: 1px solid #CBBBA4;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .qty-btn {
-            width: 32px;
-            height: 32px;
-            border: none;
-            background: var(--bg-soft);
-            color: var(--ink-dark);
-            font-size: 17px;
+        .btn-remove-member {
+            padding: 5px 11px;
+            border-radius: 999px;
+            border: 1px solid rgba(168, 50, 38, 0.35);
+            background: #FFF5F4;
+            color: var(--red-cinnabar);
+            font-size: 12.5px;
             font-weight: 700;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .qty-btn:disabled {
-            opacity: 0.35;
-            cursor: not-allowed;
-        }
-
-        .qty-val {
-            min-width: 32px;
-            text-align: center;
-            font-size: 15px;
-            font-weight: 800;
-            color: var(--purple-deep);
-        }
-
-        /* 總結算看板 */
-        .summary-banner {
-            background: linear-gradient(135deg, var(--purple-deep), #3B2046);
-            color: #FFFFFF;
-            border-radius: var(--radius-md);
-            padding: 16px 18px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-
-        .summary-items {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.9);
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .summary-totals {
-            display: flex;
-            align-items: baseline;
-            gap: 14px;
-        }
-
-        .total-count-label {
-            font-size: 14px;
-            color: #FFE49E;
-        }
-
-        .total-amount-val {
-            font-size: 24px;
-            font-weight: 800;
-            color: #FFE8A3;
-        }
-
-        /* =========================================================
-           7. 信眾祈福報名表單與匯款資訊
-           ========================================================= */
-        .bank-info-card {
-            background: var(--purple-light);
-            border: 1.5px solid #C9B2D3;
-            border-radius: var(--radius-md);
-            padding: 14px 16px;
-            margin-bottom: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        .bank-details {
-            font-size: 13.5px;
-            color: var(--purple-deep);
-            line-height: 1.65;
-        }
-
-        .btn-copy-bank {
-            padding: 8px 14px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--purple-main);
-            background: #FFFFFF;
-            color: var(--purple-main);
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            white-space: nowrap;
+        .btn-remove-member:hover {
+            background: #FFE6E3;
         }
 
         .form-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 14px;
+            gap: 13px;
         }
 
         @media (min-width: 640px) {
@@ -916,17 +709,6 @@
             color: var(--ink-muted);
         }
 
-        .cash-check-row {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 4px;
-            font-size: 13px;
-            color: var(--purple-deep);
-            font-weight: 600;
-            cursor: pointer;
-        }
-
         .wish-chips {
             display: flex;
             flex-wrap: wrap;
@@ -947,6 +729,336 @@
         .wish-chip:hover {
             border-color: var(--gold-warm);
             background: #FFF9EB;
+        }
+
+        /* 成員專屬點燈選擇區塊 */
+        .member-lamps-box {
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px dashed #D3C3B0;
+        }
+
+        .member-lamps-top-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .member-lamps-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--purple-deep);
+        }
+
+        .btn-member-taisui {
+            padding: 6px 12px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: var(--red-cinnabar);
+            color: #FFFFFF;
+            font-size: 12.5px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .main-lamp-card {
+            background: linear-gradient(135deg, #FFFDF7, #FFF5E0);
+            border: 2px solid var(--gold-warm);
+            border-radius: var(--radius-md);
+            padding: 13px 14px;
+            margin-bottom: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .main-lamp-card.lit {
+            background: linear-gradient(135deg, #FFF8E3, #FDE8C8);
+            border-color: var(--red-cinnabar);
+            box-shadow: 0 3px 12px rgba(197, 155, 73, 0.28);
+        }
+
+        .sub-lamps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        @media (min-width: 640px) {
+            .sub-lamps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 900px) {
+            .sub-lamps-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .sub-lamp-card {
+            background: var(--bg-paper);
+            border: 1.5px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .sub-lamp-card.locked {
+            background: #F5F2ED;
+            opacity: 0.72;
+            border-style: dashed;
+        }
+
+        .sub-lamp-card.lit {
+            background: var(--purple-light);
+            border-color: var(--purple-main);
+            box-shadow: 0 2px 10px rgba(91, 58, 102, 0.12);
+        }
+
+        .lamp-info-top {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+        }
+
+        .lamp-icon-badge {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .lamp-title-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .lamp-name {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink-dark);
+        }
+
+        .lamp-price-tag {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--red-cinnabar);
+            background: rgba(168, 50, 38, 0.08);
+            padding: 1px 6px;
+            border-radius: 6px;
+        }
+
+        .lamp-desc {
+            font-size: 12px;
+            color: var(--ink-muted);
+            margin-top: 2px;
+        }
+
+        .lamp-control-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 7px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .lamp-lock-hint {
+            font-size: 11.5px;
+            color: var(--ink-muted);
+            font-weight: 600;
+        }
+
+        .qty-stepper {
+            display: inline-flex;
+            align-items: center;
+            background: #FFFFFF;
+            border: 1px solid #CBBBA4;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--bg-soft);
+            color: var(--ink-dark);
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .qty-val {
+            min-width: 30px;
+            text-align: center;
+            font-size: 14.5px;
+            font-weight: 800;
+            color: var(--purple-deep);
+        }
+
+        /* 個人點燈小計列 */
+        .member-subtotal-bar {
+            margin-top: 12px;
+            background: var(--bg-soft);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            padding: 9px 12px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--purple-deep);
+        }
+
+        /* 新增家庭成員大按鈕 */
+        .btn-add-member {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px dashed var(--purple-main);
+            border-radius: var(--radius-md);
+            background: var(--purple-light);
+            color: var(--purple-deep);
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+            margin-bottom: 22px;
+        }
+
+        .btn-add-member:hover {
+            background: #EBE0F0;
+        }
+
+        /* 統一家庭聯絡與匯款資訊區塊 */
+        .household-contact-box {
+            background: var(--bg-paper);
+            border: 1.5px solid #D3C3B0;
+            border-radius: var(--radius-md);
+            padding: 18px 16px;
+            margin-bottom: 20px;
+        }
+
+        .household-box-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--purple-deep);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bank-info-card {
+            background: var(--purple-light);
+            border: 1.5px solid #C9B2D3;
+            border-radius: var(--radius-md);
+            padding: 13px 15px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .bank-details {
+            font-size: 13.5px;
+            color: var(--purple-deep);
+            line-height: 1.65;
+        }
+
+        .btn-copy-bank {
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--purple-main);
+            background: #FFFFFF;
+            color: var(--purple-main);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .cash-check-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 5px;
+            font-size: 13px;
+            color: var(--purple-deep);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* 全戶總計結算看板 */
+        .summary-banner {
+            background: linear-gradient(135deg, var(--purple-deep), #3B2046);
+            color: #FFFFFF;
+            border-radius: var(--radius-md);
+            padding: 16px 18px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .summary-items {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.92);
+            flex: 1;
+            min-width: 210px;
+            line-height: 1.55;
+        }
+
+        .summary-totals {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+        }
+
+        .total-count-label {
+            font-size: 14px;
+            color: #FFE49E;
+        }
+
+        .total-amount-val {
+            font-size: 24px;
+            font-weight: 800;
+            color: #FFE8A3;
         }
 
         .btn-submit-pray {
@@ -970,7 +1082,7 @@
         }
 
         /* =========================================================
-           8. 報名成功儀式區：七星蓮花燈陣 + LINE 明細 + 疏文卡
+           7. 報名完成儀式區：七星蓮花燈陣 + LINE 總單 + 疏文卡
            ========================================================= */
         .result-section {
             display: none;
@@ -1053,7 +1165,6 @@
             color: #FFD27D;
         }
 
-        /* 方案一雲端狀態列 */
         .cloud-sync-status {
             background: rgba(255, 255, 255, 0.1);
             border-radius: var(--radius-sm);
@@ -1062,15 +1173,15 @@
             color: #FFE8A3;
             margin-bottom: 16px;
             text-align: center;
+            line-height: 1.55;
         }
 
-        /* 方案三：LINE 對帳明細單 */
         .receipt-box {
             background: #FFFFFF;
             color: var(--ink-dark);
             border-radius: var(--radius-md);
             padding: 16px;
-            margin-bottom: 18px;
+            margin-bottom: 10px;
         }
 
         .receipt-title {
@@ -1081,6 +1192,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px;
         }
 
         .receipt-pre {
@@ -1141,11 +1254,11 @@
         }
 
         /* =========================================================
-           9. 頁尾與手機底部安全留白緩衝 (防止 Safari/Chrome 底部欄遮擋)
+           8. 頁尾 (移除設定按鈕，保留莊嚴落款與手機底部安全留白)
            ========================================================= */
         .site-footer {
             text-align: center;
-            padding: 28px 16px calc(115px + env(safe-area-inset-bottom, 20px));
+            padding: 28px 16px calc(110px + env(safe-area-inset-bottom, 20px));
             color: var(--ink-muted);
             font-size: 12.5px;
             border-top: 1px solid var(--border-light);
@@ -1154,96 +1267,15 @@
         }
 
         .footer-temple {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 800;
             color: var(--purple-deep);
-            margin-bottom: 4px;
-        }
-
-        .btn-open-admin {
-            margin-top: 14px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 9px 16px;
-            border-radius: 999px;
-            background: #FFFFFF;
-            border: 1px solid #CBBBA4;
-            color: var(--purple-deep);
-            font-size: 12.5px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            margin-bottom: 6px;
         }
 
         /* =========================================================
-           10. 廟方系統設定彈窗 (Modal) & 浮動提示 (Toast)
+           9. 浮動提示訊息 (Toast)
            ========================================================= */
-        .modal-backdrop {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 200;
-            background: rgba(25, 15, 30, 0.68);
-            padding: 16px;
-            overflow-y: auto;
-            align-items: flex-start;
-            justify-content: center;
-        }
-
-        .modal-backdrop.open {
-            display: flex;
-        }
-
-        .modal-card {
-            background: #FFFFFF;
-            width: 100%;
-            max-width: 640px;
-            border-radius: var(--radius-lg);
-            padding: 22px 18px;
-            margin: 20px auto;
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
-            border: 2px solid var(--gold-warm);
-        }
-
-        .modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border-light);
-            margin-bottom: 16px;
-        }
-
-        .modal-title {
-            font-size: 17px;
-            font-weight: 800;
-            color: var(--purple-deep);
-        }
-
-        .btn-close-modal {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 1px solid var(--border-light);
-            background: var(--bg-soft);
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .script-box {
-            background: #1E1B24;
-            color: #A7F3D0;
-            padding: 12px;
-            border-radius: var(--radius-sm);
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            font-size: 11.5px;
-            line-height: 1.5;
-            overflow-x: auto;
-            max-height: 200px;
-            margin: 8px 0;
-        }
-
         .toast-msg {
             position: fixed;
             top: 84px;
@@ -1276,7 +1308,7 @@
     <div id="toast" class="toast-msg" role="status" aria-live="polite"></div>
 
     <!-- =========================================================
-         頂部導覽列 (手機雙層排版：全銜不截斷，按鈕好點擊)
+         頂部導覽列
          ========================================================= -->
     <header class="site-header">
         <div class="header-inner">
@@ -1292,7 +1324,7 @@
                     <span id="soundIcon">🔔</span>
                     <span id="soundText">頌缽鐘聲：開</span>
                 </button>
-                <a href="#lampsSection" class="btn-nav-cta">
+                <a href="#registrationSection" class="btn-nav-cta">
                     <span>🏮</span>
                     <span>立即登記點燈</span>
                 </a>
@@ -1309,11 +1341,11 @@
             <h1 class="hero-title serif">西方直轄無極紫蓮寺</h1>
             <p class="hero-subtitle serif">2027 丁未年・七大祈福聖燈暨安太歲線上登記</p>
             <p class="hero-desc">
-                一燈能除千年暗，一智能滅萬年愚。本寺依循古禮啟建「光明燈」為主燈領航，帶動「太歲、智慧、藥師、消災、元辰、財神」六大副燈，護佑十方善信闔家康泰、元辰光彩、諸事順遂。
+                一燈能除千年暗，一智能滅萬年愚。本寺依循古禮啟建「光明燈」為主燈領航，帶動「太歲、智慧、藥師、消災、元辰、財神」六大副燈，支援個人與全戶家庭一次登記，護佑十方善信闔家康泰、元辰光彩。
             </p>
             <div class="hero-btns">
                 <a href="#zodiacSection" class="btn-hero-primary">🔍 查詢 2027 生肖太歲</a>
-                <a href="#lampsSection" class="btn-hero-secondary">🪔 選擇七大祈福聖燈</a>
+                <a href="#registrationSection" class="btn-hero-secondary">👨‍👩‍👧‍👦 個人／家庭多人點燈登記</a>
             </div>
         </div>
     </section>
@@ -1349,11 +1381,11 @@
                     <button type="button" class="btn-query" onclick="calculateZodiacByYear()">換算查詢</button>
                 </div>
                 <div id="converterResultHint" class="converter-result-hint">
-                    提示：輸入年份按下查詢，系統將自動為您帶入報名表的「本命生肖」與「出生年」。
+                    提示：輸入年份按下查詢，系統將自動為您帶入第 1 位祈福人的「本命生肖」與「出生年」。
                 </div>
             </div>
 
-            <!-- 12生肖靜態網格 (100% 直出HTML，無空白風險) -->
+            <!-- 12生肖靜態網格 -->
             <div class="zodiac-grid" id="zodiacGrid">
                 <button type="button" class="zodiac-btn" data-zodiac="鼠" onclick="selectZodiac('鼠')">
                     <span class="z-emoji">🐭</span>
@@ -1440,292 +1472,84 @@
                         <span class="zd-meta-chip" id="zdColor">🎨 開運色系：<strong>正紅、暖金、米白</strong></span>
                         <span class="zd-meta-chip" id="zdRecText">🪔 推薦燈種：<strong>光明燈 ＋ 太歲燈 ＋ 元辰燈</strong></span>
                     </div>
-                    <button type="button" class="btn-apply-zodiac-lamps" onclick="applyRecommendedLampsForCurrentZodiac()">
+                    <button type="button" class="btn-apply-zodiac-lamps" onclick="applyRecommendedLampsToFirstMember()">
                         <span>✨</span>
-                        <span id="btnApplyZodiacText">一鍵帶入「屬羊」推薦聖燈組合</span>
+                        <span id="btnApplyZodiacText">一鍵將「屬羊」推薦聖燈帶入第 1 位祈福人</span>
                     </button>
                 </div>
             </div>
         </section>
 
         <!-- =========================================================
-             區塊二：紫蓮寺七大祈福聖燈選擇 (主燈帶副燈規則)
+             區塊二：家庭／多人線上點燈登記與七大聖燈選擇
              ========================================================= -->
-        <section id="lampsSection" class="card-box">
+        <section id="registrationSection" class="card-box">
             <div class="section-header">
-                <span class="section-tag">每盞功德金 NT$ 800</span>
-                <h2 class="section-title serif">紫蓮寺七大祈福聖燈選擇</h2>
-                <p class="section-desc">依循古禮，需先點亮主燈【光明燈】，方可解鎖加點其餘六大副燈</p>
-            </div>
-
-            <!-- 犯太歲快捷組合列 -->
-            <div class="quick-combo-bar">
-                <span class="quick-combo-text">🔥 犯太歲五大生肖（羊、牛、狗、鼠、龍）專屬快捷：</span>
-                <button type="button" class="btn-combo-taisui" onclick="applyFanTaiSuiCombo()">
-                    ⚡ 一鍵套用【光明燈＋太歲燈】($1,600)
-                </button>
-            </div>
-
-            <!-- 第一層：主燈【光明燈】 -->
-            <div class="lamp-group-label">
-                <span>👑</span>
-                <span>主燈（必點領航・開啟元辰光明）</span>
-            </div>
-            <div class="main-lamp-card" id="lampCard-guangming">
-                <div class="lamp-info-top" style="flex:1; min-width:220px;">
-                    <div class="lamp-icon-badge">🪔</div>
-                    <div>
-                        <div class="lamp-title-row">
-                            <span class="lamp-name serif">光明燈（主燈）</span>
-                            <span class="lamp-price-tag">NT$ 800 / 盞</span>
-                        </div>
-                        <p class="lamp-desc">照亮前途、元辰光彩、智慧增長、破除流年黑暗，點亮後立即解鎖下方六大副燈。</p>
-                    </div>
-                </div>
-                <div class="qty-stepper">
-                    <button type="button" class="qty-btn" id="btnMinus-guangming" onclick="updateLampQty('guangming', -1)" disabled aria-label="減少光明燈">－</button>
-                    <span class="qty-val" id="qty-guangming">0</span>
-                    <button type="button" class="qty-btn" id="btnPlus-guangming" onclick="updateLampQty('guangming', 1)" aria-label="增加光明燈">＋</button>
-                </div>
-            </div>
-
-            <!-- 第二層：六大副燈 -->
-            <div class="lamp-group-label">
-                <span>🪷</span>
-                <span>六大副燈（需先點亮主燈【光明燈】方可加點）</span>
-            </div>
-            <div class="sub-lamps-grid">
-                <!-- 1. 太歲燈 -->
-                <div class="sub-lamp-card locked" id="lampCard-taisui">
-                    <div class="lamp-info-top">
-                        <div class="lamp-icon-badge">🏮</div>
-                        <div>
-                            <div class="lamp-title-row">
-                                <span class="lamp-name serif">太歲燈</span>
-                                <span class="lamp-price-tag">$800</span>
-                            </div>
-                            <p class="lamp-desc">安奉值年太歲繆丙大將軍、化解沖犯、逢凶化吉。</p>
-                        </div>
-                    </div>
-                    <div class="lamp-control-row">
-                        <span class="lamp-lock-hint" id="hint-taisui">🔒 需先點光明燈</span>
-                        <div class="qty-stepper">
-                            <button type="button" class="qty-btn sub-btn" id="btnMinus-taisui" onclick="updateLampQty('taisui', -1)" disabled>－</button>
-                            <span class="qty-val" id="qty-taisui">0</span>
-                            <button type="button" class="qty-btn sub-btn" id="btnPlus-taisui" onclick="updateLampQty('taisui', 1)" disabled>＋</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2. 智慧燈 -->
-                <div class="sub-lamp-card locked" id="lampCard-zhihui">
-                    <div class="lamp-info-top">
-                        <div class="lamp-icon-badge">📜</div>
-                        <div>
-                            <div class="lamp-title-row">
-                                <span class="lamp-name serif">智慧燈</span>
-                                <span class="lamp-price-tag">$800</span>
-                            </div>
-                            <p class="lamp-desc">文昌開竅、金榜題名、考運亨通、事業決策明朗。</p>
-                        </div>
-                    </div>
-                    <div class="lamp-control-row">
-                        <span class="lamp-lock-hint" id="hint-zhihui">🔒 需先點光明燈</span>
-                        <div class="qty-stepper">
-                            <button type="button" class="qty-btn sub-btn" id="btnMinus-zhihui" onclick="updateLampQty('zhihui', -1)" disabled>－</button>
-                            <span class="qty-val" id="qty-zhihui">0</span>
-                            <button type="button" class="qty-btn sub-btn" id="btnPlus-zhihui" onclick="updateLampQty('zhihui', 1)" disabled>＋</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. 藥師燈 -->
-                <div class="sub-lamp-card locked" id="lampCard-yaoshi">
-                    <div class="lamp-info-top">
-                        <div class="lamp-icon-badge">🌿</div>
-                        <div>
-                            <div class="lamp-title-row">
-                                <span class="lamp-name serif">藥師燈</span>
-                                <span class="lamp-price-tag">$800</span>
-                            </div>
-                            <p class="lamp-desc">消災延壽、身體康健、病苦遠離、闔家平安無恙。</p>
-                        </div>
-                    </div>
-                    <div class="lamp-control-row">
-                        <span class="lamp-lock-hint" id="hint-yaoshi">🔒 需先點光明燈</span>
-                        <div class="qty-stepper">
-                            <button type="button" class="qty-btn sub-btn" id="btnMinus-yaoshi" onclick="updateLampQty('yaoshi', -1)" disabled>－</button>
-                            <span class="qty-val" id="qty-yaoshi">0</span>
-                            <button type="button" class="qty-btn sub-btn" id="btnPlus-yaoshi" onclick="updateLampQty('yaoshi', 1)" disabled>＋</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. 消災燈 -->
-                <div class="sub-lamp-card locked" id="lampCard-xiaozai">
-                    <div class="lamp-info-top">
-                        <div class="lamp-icon-badge">🛡️</div>
-                        <div>
-                            <div class="lamp-title-row">
-                                <span class="lamp-name serif">消災燈</span>
-                                <span class="lamp-price-tag">$800</span>
-                            </div>
-                            <p class="lamp-desc">化解官非口舌、遠離小人災厄、行車出入皆平安。</p>
-                        </div>
-                    </div>
-                    <div class="lamp-control-row">
-                        <span class="lamp-lock-hint" id="hint-xiaozai">🔒 需先點光明燈</span>
-                        <div class="qty-stepper">
-                            <button type="button" class="qty-btn sub-btn" id="btnMinus-xiaozai" onclick="updateLampQty('xiaozai', -1)" disabled>－</button>
-                            <span class="qty-val" id="qty-xiaozai">0</span>
-                            <button type="button" class="qty-btn sub-btn" id="btnPlus-xiaozai" onclick="updateLampQty('xiaozai', 1)" disabled>＋</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 5. 元辰燈 -->
-                <div class="sub-lamp-card locked" id="lampCard-yuanchen">
-                    <div class="lamp-info-top">
-                        <div class="lamp-icon-badge">✨</div>
-                        <div>
-                            <div class="lamp-title-row">
-                                <span class="lamp-name serif">元辰燈</span>
-                                <span class="lamp-price-tag">$800</span>
-                            </div>
-                            <p class="lamp-desc">穩固本命元辰、精神飽滿、增強氣場與貴人相助。</p>
-                        </div>
-                    </div>
-                    <div class="lamp-control-row">
-                        <span class="lamp-lock-hint" id="hint-yuanchen">🔒 需先點光明燈</span>
-                        <div class="qty-stepper">
-                            <button type="button" class="qty-btn sub-btn" id="btnMinus-yuanchen" onclick="updateLampQty('yuanchen', -1)" disabled>－</button>
-                            <span class="qty-val" id="qty-yuanchen">0</span>
-                            <button type="button" class="qty-btn sub-btn" id="btnPlus-yuanchen" onclick="updateLampQty('yuanchen', 1)" disabled>＋</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 6. 財神燈 -->
-                <div class="sub-lamp-card locked" id="lampCard-caishen">
-                    <div class="lamp-info-top">
-                        <div class="lamp-icon-badge">🪙</div>
-                        <div>
-                            <div class="lamp-title-row">
-                                <span class="lamp-name serif">財神燈</span>
-                                <span class="lamp-price-tag">$800</span>
-                            </div>
-                            <p class="lamp-desc">正偏財運亨通、事業生意興旺、財庫豐盈聚福。</p>
-                        </div>
-                    </div>
-                    <div class="lamp-control-row">
-                        <span class="lamp-lock-hint" id="hint-caishen">🔒 需先點光明燈</span>
-                        <div class="qty-stepper">
-                            <button type="button" class="qty-btn sub-btn" id="btnMinus-caishen" onclick="updateLampQty('caishen', -1)" disabled>－</button>
-                            <span class="qty-val" id="qty-caishen">0</span>
-                            <button type="button" class="qty-btn sub-btn" id="btnPlus-caishen" onclick="updateLampQty('caishen', 1)" disabled>＋</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 即時功德金結算看板 -->
-            <div class="summary-banner">
-                <div class="summary-items" id="selectedLampsSummary">
-                    尚未選擇聖燈（請先點亮上方主燈【光明燈】）
-                </div>
-                <div class="summary-totals">
-                    <span class="total-count-label">共 <strong id="totalLampsCount">0</strong> 盞</span>
-                    <span class="total-amount-val serif">NT$ <span id="totalLampsAmount">0</span></span>
-                </div>
-            </div>
-        </section>
-
-        <!-- =========================================================
-             區塊三：信眾祈福報名表單與匯款資訊
-             ========================================================= -->
-        <section id="formSection" class="card-box">
-            <div class="section-header">
-                <span class="section-tag">線上疏文登錄</span>
-                <h2 class="section-title serif">填寫祈福信眾資料與對帳資訊</h2>
-                <p class="section-desc">送出後將點亮七星蓮花燈陣，並自動產生官方 LINE 對帳明細與高清疏文卡</p>
-            </div>
-
-            <!-- 紫蓮寺匯款帳戶卡片 -->
-            <div class="bank-info-card">
-                <div class="bank-details">
-                    <div><strong>🏦 功德金匯款帳戶：</strong><span id="displayBankName">郵局 (700) / 紫蓮寺專戶</span></div>
-                    <div><strong>💳 匯款帳號：</strong><span id="displayBankAccount" style="font-family:monospace; font-size:15px; font-weight:800;">0001234-0567890</span></div>
-                    <div><strong>🏛️ 戶名：</strong><span id="displayBankHolder">西方直轄無極紫蓮寺</span></div>
-                </div>
-                <button type="button" class="btn-copy-bank" onclick="copyBankAccount()">📋 複製匯款帳號</button>
+                <span class="section-tag">每盞結緣金 NT$ 800 ・ 支援全戶家庭一次登記</span>
+                <h2 class="section-title serif">祈福人資料填寫與七大聖燈選擇</h2>
+                <p class="section-desc">每位祈福人皆需先點亮主燈【光明燈】，方可解鎖加點其餘六大副燈；可點擊下方按鈕新增家人</p>
             </div>
 
             <form id="prayForm" onsubmit="handlePraySubmit(event)" novalidate>
-                <div class="form-grid">
-                    <!-- 1. 信眾姓名 -->
-                    <div class="form-group">
-                        <label class="form-label" for="inputName">祈福信眾姓名 <span class="req">*</span></label>
-                        <input type="text" id="inputName" class="form-control" placeholder="請輸入信眾大德芳名" required>
+                <!-- 祈福人卡片列表容器 -->
+                <div id="membersContainer" class="members-stack"></div>
+
+                <!-- 新增家庭成員按鈕 -->
+                <button type="button" class="btn-add-member" onclick="addFamilyMember()">
+                    <span>➕</span>
+                    <span>新增一位家庭成員／祈福人（同筆訂單一次登記）</span>
+                </button>
+
+                <!-- 統一家庭聯絡與匯款資訊區塊 -->
+                <div class="household-contact-box">
+                    <div class="household-box-title serif">
+                        <span>🏡</span>
+                        <span>統一聯絡與匯款對帳資訊（整筆訂單填寫一次即可）</span>
                     </div>
 
-                    <!-- 2. 聯絡電話 -->
-                    <div class="form-group">
-                        <label class="form-label" for="inputPhone">聯絡電話 <span class="req">*</span></label>
-                        <input type="tel" id="inputPhone" class="form-control" placeholder="例如：0912-345-678" inputmode="tel" required>
-                    </div>
-
-                    <!-- 3. 本命生肖 (13個靜態 option 寫死在 HTML 中確保手機瀏覽器100%正常顯示) -->
-                    <div class="form-group">
-                        <label class="form-label" for="inputZodiac">本命生肖 <span class="req">*</span></label>
-                        <select id="inputZodiac" class="form-control" required>
-                            <option value="">-- 請選擇本命生肖 --</option>
-                            <option value="鼠">子鼠（害太歲・犯太歲）</option>
-                            <option value="牛">丑牛（沖太歲・犯太歲）</option>
-                            <option value="虎">寅虎（平順吉星）</option>
-                            <option value="兔">卯兔（三合貴人）</option>
-                            <option value="龍">辰龍（刑太歲・犯太歲）</option>
-                            <option value="蛇">巳蛇（平順安泰）</option>
-                            <option value="馬">午馬（六合貴人）</option>
-                            <option value="羊" selected>未羊（值太歲・刑太歲）</option>
-                            <option value="猴">申猴（平順漸佳）</option>
-                            <option value="雞">酉雞（平順穩健）</option>
-                            <option value="狗">戌狗（破太歲・刑太歲）</option>
-                            <option value="豬">亥豬（三合貴人）</option>
-                        </select>
-                    </div>
-
-                    <!-- 4. 農曆生辰 / 出生年 -->
-                    <div class="form-group">
-                        <label class="form-label" for="inputBirth">農曆生辰 / 出生年 <span class="req">*</span></label>
-                        <input type="text" id="inputBirth" class="form-control" placeholder="例如：民國80年農曆八月十五吉時" required>
-                    </div>
-
-                    <!-- 5. 居住地址 -->
-                    <div class="form-group">
-                        <label class="form-label" for="inputAddress">居住地址（疏文稟告用）</label>
-                        <input type="text" id="inputAddress" class="form-control" placeholder="未填預設為「台灣省善信吉居」">
-                    </div>
-
-                    <!-- 6. 匯款帳號後五碼 / 現場現金 -->
-                    <div class="form-group">
-                        <label class="form-label" for="inputLast5">匯款帳號後五碼 <span class="req">*</span></label>
-                        <input type="text" id="inputLast5" class="form-control" placeholder="請輸入轉帳帳號後 5 碼" maxlength="10" inputmode="numeric">
-                        <label class="cash-check-row">
-                            <input type="checkbox" id="chkCashPay" onchange="toggleCashPay()">
-                            <span>現場現金繳納功德金（免填後五碼）</span>
-                        </label>
-                    </div>
-
-                    <!-- 7. 2027 丁未年祈福心願 -->
-                    <div class="form-group form-full">
-                        <label class="form-label" for="inputWish">2027 丁未年祈福心願</label>
-                        <textarea id="inputWish" class="form-control" rows="2" placeholder="祈求諸佛菩薩與值年太歲繆丙大將軍護佑...">祈願丁未年闔家平安康泰，元辰光彩，消災解厄，事業財運皆順遂。</textarea>
-                        <div class="wish-chips">
-                            <button type="button" class="wish-chip" onclick="setWishText('祈願丁未年闔家平安康泰，元辰光彩，消災解厄，事業財運皆順遂。')">闔家平安</button>
-                            <button type="button" class="wish-chip" onclick="setWishText('恭請值年太歲繆丙大將軍慈悲護佑，化解犯太歲沖煞，逢凶化吉、諸事順心。')">化解太歲</button>
-                            <button type="button" class="wish-chip" onclick="setWishText('祈求文昌開竅、智慧增長、金榜題名，工作決策清明順遂。')">智慧考運</button>
-                            <button type="button" class="wish-chip" onclick="setWishText('祈願五路財神賜福，正偏財運亨通、生意興隆、財庫豐盈。')">財源廣進</button>
+                    <!-- 紫蓮寺匯款帳戶卡片 -->
+                    <div class="bank-info-card">
+                        <div class="bank-details">
+                            <div><strong>🏦 結緣金匯款帳戶：</strong>郵局 (700) / 紫蓮寺專戶</div>
+                            <div><strong>💳 匯款帳號：</strong><span style="font-family:monospace; font-size:15px; font-weight:800;">0001234-0567890</span></div>
+                            <div><strong>🏛️ 戶名：</strong>西方直轄無極紫蓮寺</div>
                         </div>
+                        <button type="button" class="btn-copy-bank" onclick="copyBankAccount()">📋 複製匯款帳號</button>
+                    </div>
+
+                    <div class="form-grid">
+                        <!-- 聯絡電話 -->
+                        <div class="form-group">
+                            <label class="form-label" for="inputPhone">聯絡電話 <span class="req">*</span></label>
+                            <input type="tel" id="inputPhone" class="form-control" placeholder="例如：0912-345-678" inputmode="tel" required>
+                        </div>
+
+                        <!-- 匯款帳號後五碼 / 現場現金 -->
+                        <div class="form-group">
+                            <label class="form-label" for="inputLast5">匯款帳號後五碼 <span class="req">*</span></label>
+                            <input type="text" id="inputLast5" class="form-control" placeholder="請輸入轉帳帳號後 5 碼" maxlength="10" inputmode="numeric">
+                            <label class="cash-check-row">
+                                <input type="checkbox" id="chkCashPay" onchange="toggleCashPay()">
+                                <span>現場現金繳納結緣金（免填後五碼）</span>
+                            </label>
+                        </div>
+
+                        <!-- 居住地址 -->
+                        <div class="form-group form-full">
+                            <label class="form-label" for="inputAddress">居住地址（疏文稟告用）</label>
+                            <input type="text" id="inputAddress" class="form-control" placeholder="未填預設為「台灣省善信吉居」">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 全戶即時結算看板 -->
+                <div class="summary-banner">
+                    <div class="summary-items" id="householdSummaryText">
+                        目前共 1 位祈福人｜尚未選擇聖燈（請先為祈福人點亮主燈【光明燈】）
+                    </div>
+                    <div class="summary-totals">
+                        <span class="total-count-label">全戶共 <strong id="grandTotalCount">0</strong> 盞</span>
+                        <span class="total-amount-val serif">NT$ <span id="grandTotalAmount">0</span></span>
                     </div>
                 </div>
 
@@ -1736,7 +1560,7 @@
         </section>
 
         <!-- =========================================================
-             區塊四：報名完成儀式舞台 (七星蓮花燈陣 + LINE明細 + 疏文卡)
+             區塊三：報名完成儀式舞台 (七星蓮花燈陣 + LINE 總單 + 疏文卡)
              ========================================================= -->
         <section id="resultSection" class="result-section" aria-live="polite">
             <div style="text-align:center;">
@@ -1744,12 +1568,12 @@
                     ✨ 疏文已上達 ・ 聖燈圓滿點亮 ✨
                 </span>
                 <h2 class="serif" style="font-size:22px; color:#FFFFFF; margin-bottom:4px;">西方直轄無極紫蓮寺・點燈祈福圓滿</h2>
-                <p style="font-size:13px; color:rgba(255,255,255,0.85);">一燈照破千年暗，願佛光普照信眾大德歲歲平安</p>
+                <p style="font-size:13px; color:rgba(255,255,255,0.85);">一燈照破千年暗，願佛光普照信眾大德闔家平安</p>
             </div>
 
             <!-- 七星蓮花燈陣視覺動畫 -->
             <div class="lotus-array-box">
-                <div class="lotus-array-title serif">🪷 紫蓮寺七星蓮花聖燈陣 🪷</div>
+                <div class="lotus-array-title serif">🪷 紫蓮寺七星蓮花聖燈陣（全戶累計點亮）🪷</div>
                 <div class="seven-lamps-stage">
                     <div class="stage-lamp-node" id="node-guangming">
                         <span class="stage-lamp-icon">🪔</span>
@@ -1789,15 +1613,15 @@
                 </div>
             </div>
 
-            <!-- 方案一：Google 試算表同步狀態 -->
+            <!-- 雲端試算表寫入狀態 -->
             <div class="cloud-sync-status" id="cloudSyncStatus">
                 ⏳ 正在處理報名資料...
             </div>
 
-            <!-- 方案三：官方 LINE 對帳明細單與一鍵傳送按鈕 -->
+            <!-- 官方 LINE 對帳明細總單與一鍵傳送按鈕 -->
             <div class="receipt-box">
                 <div class="receipt-title">
-                    <span>📋 報名對帳明細單</span>
+                    <span>📋 全戶點燈報名對帳總單</span>
                     <span id="receiptOrderBadge" style="font-size:12px; color:#A83226; background:#FFF2F0; padding:2px 8px; border-radius:6px;"></span>
                 </div>
                 <pre class="receipt-pre" id="receiptTextPre"></pre>
@@ -1805,11 +1629,11 @@
                 <div class="action-btn-stack">
                     <button type="button" class="btn-line-primary" onclick="copyAndOpenTempleLine()">
                         <span>💬</span>
-                        <span>一鍵複製明細並開啟寺廟 LINE</span>
+                        <span>一鍵複製全戶明細並開啟寺廟 LINE</span>
                     </button>
                     <button type="button" class="btn-download-png" onclick="downloadPetitionCardPNG()">
                         <span>📥</span>
-                        <span>下載高清「2027丁未年祈福疏文卡」(PNG)</span>
+                        <span>下載高清「2027丁未年全戶祈福疏文卡」(PNG)</span>
                     </button>
                 </div>
             </div>
@@ -1818,108 +1642,25 @@
     </main>
 
     <!-- =========================================================
-         頁尾與手機底部安全留白緩衝
+         頁尾 (莊嚴寺廟落款 + 手機底部安全留白緩衝)
          ========================================================= -->
     <footer class="site-footer">
         <div class="footer-temple serif">西方直轄無極紫蓮寺</div>
         <p>2027 丁未羊年・値年太歲繆丙大將軍・七大祈福聖燈線上登記</p>
-        <p style="margin-top:4px;">願以此功德，普及於一切，我等與眾生，皆共成佛道。</p>
-        <button type="button" class="btn-open-admin" onclick="openAdminModal()">
-            <span>⚙️</span>
-            <span>廟方系統設定（Google 試算表 &amp; 官方 LINE）</span>
-        </button>
+        <p style="margin-top:4px;">願以此善緣迴向十方，祈求風調雨順、國泰民安、闔家康泰。</p>
     </footer>
-
-    <!-- =========================================================
-         廟方系統設定彈窗 (專屬對接 2027丁未年點燈報名統計 試算表)
-         ========================================================= -->
-    <div id="adminModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
-        <div class="modal-card">
-            <div class="modal-header">
-                <h3 class="modal-title serif" id="adminModalTitle">⚙️ 廟方雲端統計與 LINE 串接設定</h3>
-                <button type="button" class="btn-close-modal" onclick="closeAdminModal()" aria-label="關閉視窗">✕</button>
-            </div>
-
-            <div class="form-group" style="margin-bottom:12px;">
-                <label class="form-label" for="cfgSheetUrl">Google Apps Script Web App 接收網址：</label>
-                <input type="url" id="cfgSheetUrl" class="form-control" placeholder="https://script.google.com/macros/s/您的部署ID/exec">
-                <span style="font-size:12px; color:var(--ink-muted);">貼上部署後的網址，信眾送出報名即自動寫入「2027丁未年點燈報名統計」第 11 列起。</span>
-            </div>
-
-            <div class="form-group" style="margin-bottom:12px;">
-                <label class="form-label" for="cfgLineUrl">寺廟官方 LINE 連結：</label>
-                <input type="url" id="cfgLineUrl" class="form-control" value="https://lin.ee/5ngRiaw">
-            </div>
-
-            <div class="form-grid" style="margin-bottom:14px;">
-                <div class="form-group">
-                    <label class="form-label" for="cfgBankName">匯款銀行 / 郵局名稱：</label>
-                    <input type="text" id="cfgBankName" class="form-control" value="郵局 (700) / 紫蓮寺專戶">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="cfgBankAccount">匯款帳號：</label>
-                    <input type="text" id="cfgBankAccount" class="form-control" value="0001234-0567890">
-                </div>
-                <div class="form-group form-full">
-                    <label class="form-label" for="cfgBankHolder">帳戶戶名：</label>
-                    <input type="text" id="cfgBankHolder" class="form-control" value="西方直轄無極紫蓮寺">
-                </div>
-            </div>
-
-            <button type="button" class="btn-submit-pray" style="margin-top:0; margin-bottom:18px; padding:12px;" onclick="saveAdminSettings()">
-                💾 儲存廟方設定
-            </button>
-
-            <div style="border-top:1px solid var(--border-light); padding-top:14px;">
-                <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
-                    <strong style="font-size:13.5px; color:var(--purple-deep);">📋 專屬 Google Apps Script 接收程式碼</strong>
-                    <button type="button" class="btn-copy-bank" onclick="copyAppsScriptCode()">一鍵複製程式碼</button>
-                </div>
-                <p style="font-size:12px; color:var(--ink-muted); margin-top:4px;">
-                    請在您的 Google 試算表點選「擴充功能 → Apps Script」，貼上以下程式碼並「部署為網頁應用程式（誰可以存取：所有人）」，再將產生的網址貼入上方欄位：
-                </p>
-                <pre class="script-box" id="appsScriptCode">function doPost(e) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName("2027丁未年點燈報名統計") || ss.getActiveSheet();
-  var data = JSON.parse(e.postData.contents);
-  
-  // 從第 11 列起尋找下一列空白列寫入 A~S 欄
-  var lastRow = Math.max(sheet.getLastRow(), 10);
-  var targetRow = lastRow + 1;
-  
-  var rowValues = [
-    data.orderId,           // A: 報名單號
-    data.timestamp,         // B: 報名時間
-    data.name,              // C: 信眾姓名
-    "'" + data.phone,       // D: 聯絡電話 (保留開頭0)
-    data.zodiac,            // E: 生肖
-    data.birth,             // F: 農曆生辰
-    data.address,           // G: 居住地址
-    Number(data.guangming), // H: 光明燈
-    Number(data.taisui),    // I: 太歲燈
-    Number(data.zhihui),    // J: 智慧燈
-    Number(data.yaoshi),    // K: 藥師燈
-    Number(data.xiaozai),   // L: 消災燈
-    Number(data.yuanchen),  // M: 元辰燈
-    Number(data.caishen),   // N: 財神燈
-    "=SUM(H" + targetRow + ":N" + targetRow + ")", // O: 總盞數公式
-    "=O" + targetRow + "*800",                     // P: 總功德金公式
-    "'" + data.last5,       // Q: 匯款後五碼
-    data.wish,              // R: 祈福心願
-    "待確認"                // S: 對帳狀態
-  ];
-  
-  sheet.getRange(targetRow, 1, 1, rowValues.length).setValues([rowValues]);
-  return ContentService.createTextOutput(JSON.stringify({ status: "ok", row: targetRow }))
-    .setMimeType(ContentService.MimeType.JSON);
-}</pre>
-            </div>
-        </div>
-    </div>
 
     <script>
         /* =========================================================
-           1. 資料庫：12生肖運勢與紫蓮寺七大聖燈設定
+           1. 永久內建正式串接設定 (所有裝置開箱即用)
+           ========================================================= */
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby0gYLA3kZCbACY4yS-XHsJI2bwyjLNrUnVLoiRBsTjiNdYyBxln-SvpdGiMlO0PTaE/exec";
+        const OFFICIAL_LINE_URL = "https://lin.ee/5ngRiaw";
+        const TEMPLE_BANK_ACCOUNT = "0001234-0567890";
+        const LAMP_PRICE = 800;
+
+        /* =========================================================
+           2. 12生肖流年運勢資料庫與七大聖燈設定
            ========================================================= */
         const ZODIAC_DATA = {
             '鼠': {
@@ -2033,16 +1774,31 @@
         };
 
         const LAMP_META = [
-            { id: 'guangming', name: '光明燈', icon: '🪔', isMain: true },
-            { id: 'taisui',    name: '太歲燈', icon: '🏮', isMain: false },
-            { id: 'zhihui',    name: '智慧燈', icon: '📜', isMain: false },
-            { id: 'yaoshi',    name: '藥師燈', icon: '🌿', isMain: false },
-            { id: 'xiaozai',   name: '消災燈', icon: '🛡️', isMain: false },
-            { id: 'yuanchen',  name: '元辰燈', icon: '✨', isMain: false },
-            { id: 'caishen',   name: '財神燈', icon: '🪙', isMain: false }
+            { id: 'guangming', name: '光明燈', icon: '🪔', desc: '照亮前途、元辰光彩、智慧增長，點亮後立即解鎖下方六大副燈。', isMain: true },
+            { id: 'taisui',    name: '太歲燈', icon: '🏮', desc: '安奉值年太歲繆丙大將軍、化解沖犯、逢凶化吉。', isMain: false },
+            { id: 'zhihui',    name: '智慧燈', icon: '📜', desc: '文昌開竅、金榜題名、考運亨通、事業決策明朗。', isMain: false },
+            { id: 'yaoshi',    name: '藥師燈', icon: '🌿', desc: '消災延壽、身體康健、病苦遠離、闔家平安無恙。', isMain: false },
+            { id: 'xiaozai',   name: '消災燈', icon: '🛡️', desc: '化解官非口舌、遠離小人災厄、行車出入皆平安。', isMain: false },
+            { id: 'yuanchen',  name: '元辰燈', icon: '✨', desc: '穩固本命元辰、精神飽滿、增強氣場與貴人相助。', isMain: false },
+            { id: 'caishen',   name: '財神燈', icon: '🪙', desc: '正偏財運亨通、事業生意興旺、財庫豐盈聚福。', isMain: false }
         ];
 
-        const LAMP_PRICE = 800;
+        const ZODIAC_OPTIONS_HTML = `
+            <option value="">-- 請選擇本命生肖 --</option>
+            <option value="鼠">子鼠（害太歲・犯太歲）</option>
+            <option value="牛">丑牛（沖太歲・犯太歲）</option>
+            <option value="虎">寅虎（平順吉星）</option>
+            <option value="兔">卯兔（三合貴人）</option>
+            <option value="龍">辰龍（刑太歲・犯太歲）</option>
+            <option value="蛇">巳蛇（平順安泰）</option>
+            <option value="馬">午馬（六合貴人）</option>
+            <option value="羊" selected>未羊（值太歲・刑太歲）</option>
+            <option value="猴">申猴（平順漸佳）</option>
+            <option value="雞">酉雞（平順穩健）</option>
+            <option value="狗">戌狗（破太歲・刑太歲）</option>
+            <option value="豬">亥豬（三合貴人）</option>
+        `;
+
         const ZODIAC_ORDER = ['鼠', '牛', '虎', '兔', '龍', '蛇', '馬', '羊', '猴', '雞', '狗', '豬'];
         const HEAVENLY_STEMS = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
         const EARTHLY_BRANCHES = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
@@ -2052,50 +1808,19 @@
         let soundEnabled = true;
         let audioCtx = null;
 
-        let lampQuantities = {
-            guangming: 0,
-            taisui: 0,
-            zhihui: 0,
-            yaoshi: 0,
-            xiaozai: 0,
-            yuanchen: 0,
-            caishen: 0
-        };
+        // 家庭祈福人陣列
+        let membersList = [];
+        let nextMemberUid = 1;
 
         let lastGeneratedReceiptText = '';
-        let lastSubmissionData = null;
-
-        // 廟方預設設定 (已綁定官方 LINE: https://lin.ee/5ngRiaw)
-        let templeConfig = {
-            sheetUrl: '',
-            lineUrl: 'https://lin.ee/5ngRiaw',
-            bankName: '郵局 (700) / 紫蓮寺專戶',
-            bankAccount: '0001234-0567890',
-            bankHolder: '西方直轄無極紫蓮寺'
-        };
+        let lastOrderSummary = null;
 
         /* =========================================================
-           2. 初始化與本地設定讀取
+           3. 初始化：預設建立第 1 位祈福人
            ========================================================= */
         document.addEventListener('DOMContentLoaded', () => {
-            loadTempleConfig();
-            refreshLampsUI();
+            addFamilyMember(true);
         });
-
-        function loadTempleConfig() {
-            try {
-                const saved = localStorage.getItem('zilian_temple_config_2027');
-                if (saved) {
-                    const parsed = JSON.parse(saved);
-                    templeConfig = { ...templeConfig, ...parsed };
-                }
-            } catch (e) {
-                // 忽略隱私模式存儲限制
-            }
-            document.getElementById('displayBankName').textContent = templeConfig.bankName;
-            document.getElementById('displayBankAccount').textContent = templeConfig.bankAccount;
-            document.getElementById('displayBankHolder').textContent = templeConfig.bankHolder;
-        }
 
         function showToast(msg) {
             const toastEl = document.getElementById('toast');
@@ -2108,7 +1833,7 @@
         }
 
         /* =========================================================
-           3. 原生 Web Audio API 寺院頌缽鐘聲
+           4. 原生 Web Audio API 寺院頌缽鐘聲
            ========================================================= */
         function toggleAudio() {
             soundEnabled = !soundEnabled;
@@ -2135,7 +1860,7 @@
                 }
 
                 const now = audioCtx.currentTime;
-                const freqs = [293.66, 440, 587.33]; // D4, A4, D5 溫潤泛音
+                const freqs = [293.66, 440, 587.33];
                 freqs.forEach((freq, idx) => {
                     const osc = audioCtx.createOscillator();
                     const gain = audioCtx.createGain();
@@ -2152,13 +1877,11 @@
                     osc.start(now);
                     osc.stop(now + 3.3);
                 });
-            } catch (e) {
-                // 忽略瀏覽器音效阻擋
-            }
+            } catch (e) {}
         }
 
         /* =========================================================
-           4. 出生年份換算與 12 生肖查詢互動
+           5. 出生年份換算與 12 生肖查詢互動
            ========================================================= */
         function setEra(era) {
             currentEra = era;
@@ -2181,7 +1904,6 @@
                 return;
             }
 
-            // 1900 年為庚子鼠年
             const offset = ((adYear - 1900) % 12 + 12) % 12;
             const zodiac = ZODIAC_ORDER[offset];
             const stem = HEAVENLY_STEMS[((adYear - 4) % 10 + 10) % 10];
@@ -2189,11 +1911,18 @@
             const rocYear = adYear - 1911;
 
             document.getElementById('converterResultHint').innerHTML =
-                `✅ 換算結果：西元 <strong>${adYear}</strong> 年（民國 <strong>${rocYear}</strong> 年）為歲次 <strong>${stem}${branch}${zodiac}年</strong>，已同步填入下方報名表！`;
+                `✅ 換算結果：西元 <strong>${adYear}</strong> 年（民國 <strong>${rocYear}</strong> 年）為歲次 <strong>${stem}${branch}${zodiac}年</strong>，已同步帶入第 1 位祈福人！`;
 
             selectZodiac(zodiac);
-            document.getElementById('inputZodiac').value = zodiac;
-            document.getElementById('inputBirth').value = `民國${rocYear}年（西元${adYear}年・${stem}${branch}年）`;
+            if (membersList.length > 0) {
+                const m0 = membersList[0];
+                m0.zodiac = zodiac;
+                m0.birth = `民國${rocYear}年（西元${adYear}年・${stem}${branch}年）`;
+                const zSel = document.getElementById(`mZodiac-${m0.uid}`);
+                const bInp = document.getElementById(`mBirth-${m0.uid}`);
+                if (zSel) zSel.value = zodiac;
+                if (bInp) bInp.value = m0.birth;
+            }
             showToast(`已查詢：民國${rocYear}年屬「${zodiac}」`);
         }
 
@@ -2218,127 +1947,298 @@
             document.getElementById('zdAdvice').innerHTML = `<strong>【紫蓮寺化解之道】</strong>${info.advice}`;
             document.getElementById('zdColor').innerHTML = `🎨 開運色系：<strong>${info.color}</strong>`;
             document.getElementById('zdRecText').innerHTML = `🪔 推薦燈種：<strong>${info.recLabel}</strong>`;
-            document.getElementById('btnApplyZodiacText').textContent = `一鍵帶入「屬${zodiac}」推薦聖燈組合`;
+            document.getElementById('btnApplyZodiacText').textContent = `一鍵將「屬${zodiac}」推薦聖燈帶入第 1 位祈福人`;
 
-            document.getElementById('inputZodiac').value = zodiac;
+            if (membersList.length > 0) {
+                membersList[0].zodiac = zodiac;
+                const zSel = document.getElementById(`mZodiac-${membersList[0].uid}`);
+                if (zSel) zSel.value = zodiac;
+            }
         }
 
-        function applyRecommendedLampsForCurrentZodiac() {
+        function applyRecommendedLampsToFirstMember() {
             const info = ZODIAC_DATA[selectedZodiac];
-            if (!info) return;
-            resetAllLamps();
+            if (!info || membersList.length === 0) return;
+            const m0 = membersList[0];
+            m0.zodiac = selectedZodiac;
+            Object.keys(m0.lamps).forEach(k => m0.lamps[k] = 0);
             info.lamps.forEach(lampId => {
-                lampQuantities[lampId] = 1;
+                m0.lamps[lampId] = 1;
             });
-            refreshLampsUI();
-            showToast(`已為屬「${selectedZodiac}」帶入：${info.recLabel}`);
-            document.getElementById('lampsSection').scrollIntoView({ behavior: 'smooth' });
+            renderAllMembers();
+            showToast(`已為第 1 位祈福人（屬${selectedZodiac}）帶入：${info.recLabel}`);
+            document.getElementById('registrationSection').scrollIntoView({ behavior: 'smooth' });
         }
 
         /* =========================================================
-           5. 七大聖燈「主燈帶副燈」與每盞 $800 結算邏輯
+           6. 家庭／多人祈福人管理與獨立聖燈「主燈帶副燈」邏輯
            ========================================================= */
-        function resetAllLamps() {
-            Object.keys(lampQuantities).forEach(k => {
-                lampQuantities[k] = 0;
+        function addFamilyMember(isInitial = false) {
+            if (membersList.length >= 15) {
+                showToast('單筆訂單最多可登記 15 位家庭成員');
+                return;
+            }
+            const uid = nextMemberUid++;
+            membersList.push({
+                uid,
+                name: '',
+                zodiac: isInitial ? selectedZodiac : '羊',
+                birth: '',
+                wish: '祈願丁未年闔家平安康泰，元辰光彩，消災解厄，事業財運皆順遂。',
+                lamps: {
+                    guangming: 0,
+                    taisui: 0,
+                    zhihui: 0,
+                    yaoshi: 0,
+                    xiaozai: 0,
+                    yuanchen: 0,
+                    caishen: 0
+                }
             });
+            renderAllMembers();
+            if (!isInitial) {
+                showToast(`已新增第 ${membersList.length} 位祈福人`);
+                setTimeout(() => {
+                    const card = document.getElementById(`memberCard-${uid}`);
+                    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 80);
+            }
         }
 
-        function applyFanTaiSuiCombo() {
-            resetAllLamps();
-            lampQuantities.guangming = 1;
-            lampQuantities.taisui = 1;
-            refreshLampsUI();
-            showToast('已套用【光明燈＋太歲燈】組合（共 2 盞，NT$ 1,600）');
+        function removeFamilyMember(uid) {
+            if (membersList.length <= 1) return;
+            membersList = membersList.filter(m => m.uid !== uid);
+            renderAllMembers();
+            showToast('已移除該位家庭成員');
         }
 
-        function updateLampQty(lampId, delta) {
-            const current = lampQuantities[lampId] || 0;
+        function updateMemberField(uid, field, value) {
+            const m = membersList.find(item => item.uid === uid);
+            if (m) {
+                m[field] = value;
+                updateHouseholdGrandSummary();
+            }
+        }
+
+        function setMemberWish(uid, text) {
+            const m = membersList.find(item => item.uid === uid);
+            if (!m) return;
+            m.wish = text;
+            const el = document.getElementById(`mWish-${uid}`);
+            if (el) el.value = text;
+        }
+
+        function applyMemberTaiSuiCombo(uid) {
+            const m = membersList.find(item => item.uid === uid);
+            if (!m) return;
+            Object.keys(m.lamps).forEach(k => m.lamps[k] = 0);
+            m.lamps.guangming = 1;
+            m.lamps.taisui = 1;
+            renderAllMembers();
+            showToast('已為該位祈福人套用【光明燈＋太歲燈】($1,600)');
+        }
+
+        function updateMemberLampQty(uid, lampId, delta) {
+            const m = membersList.find(item => item.uid === uid);
+            if (!m) return;
+
+            const current = m.lamps[lampId] || 0;
             const nextVal = Math.max(0, Math.min(20, current + delta));
 
             if (lampId === 'guangming') {
-                lampQuantities.guangming = nextVal;
-                // 若主燈光明燈歸零，強制將所有副燈歸零並重新鎖定
+                m.lamps.guangming = nextVal;
                 if (nextVal === 0) {
-                    const hadSub = Object.keys(lampQuantities).some(k => k !== 'guangming' && lampQuantities[k] > 0);
-                    resetAllLamps();
+                    const hadSub = Object.keys(m.lamps).some(k => k !== 'guangming' && m.lamps[k] > 0);
+                    Object.keys(m.lamps).forEach(k => m.lamps[k] = 0);
                     if (hadSub) {
-                        showToast('主燈【光明燈】已取消，其餘副燈已自動歸零並鎖定');
+                        showToast('該位主燈【光明燈】已取消，其餘副燈已自動歸零並鎖定');
                     }
                 } else if (current === 0 && nextVal === 1) {
-                    showToast('已點亮主燈【光明燈】，六大副燈已解鎖！');
+                    showToast('已點亮主燈【光明燈】，該位六大副燈已解鎖！');
                 }
             } else {
-                // 副燈操作前檢查主燈是否已點亮
-                if (lampQuantities.guangming <= 0) {
-                    showToast('需先點亮主燈【光明燈】，方可加點副燈');
+                if (m.lamps.guangming <= 0) {
+                    showToast('需先點亮該位主燈【光明燈】，方可加點副燈');
                     return;
                 }
-                lampQuantities[lampId] = nextVal;
+                m.lamps[lampId] = nextVal;
             }
 
-            refreshLampsUI();
+            renderAllMembers();
         }
 
-        function refreshLampsUI() {
-            const mainLit = lampQuantities.guangming > 0;
+        function renderAllMembers() {
+            const container = document.getElementById('membersContainer');
+            container.innerHTML = membersList.map((m, index) => {
+                const isFirst = index === 0;
+                const mainLit = (m.lamps.guangming || 0) > 0;
 
-            // 1. 更新主燈光明燈狀態
-            const mainCard = document.getElementById('lampCard-guangming');
-            mainCard.classList.toggle('lit', mainLit);
-            document.getElementById('qty-guangming').textContent = lampQuantities.guangming;
-            document.getElementById('btnMinus-guangming').disabled = lampQuantities.guangming <= 0;
+                // 計算個人點燈小計
+                let personCount = 0;
+                const personParts = [];
+                LAMP_META.forEach(meta => {
+                    const q = m.lamps[meta.id] || 0;
+                    if (q > 0) {
+                        personCount += q;
+                        personParts.push(`${meta.name}×${q}`);
+                    }
+                });
+                const personAmount = personCount * LAMP_PRICE;
 
-            // 2. 更新六大副燈鎖定與數量狀態
-            LAMP_META.filter(m => !m.isMain).forEach(lamp => {
-                const qty = lampQuantities[lamp.id] || 0;
-                const card = document.getElementById(`lampCard-${lamp.id}`);
-                const hint = document.getElementById(`hint-${lamp.id}`);
-                const btnMinus = document.getElementById(`btnMinus-${lamp.id}`);
-                const btnPlus = document.getElementById(`btnPlus-${lamp.id}`);
-                const qtySpan = document.getElementById(`qty-${lamp.id}`);
+                // 產生六大副燈 HTML
+                const subLampsHtml = LAMP_META.filter(meta => !meta.isMain).map(meta => {
+                    const qty = m.lamps[meta.id] || 0;
+                    const cardClass = !mainLit ? 'sub-lamp-card locked' : (qty > 0 ? 'sub-lamp-card lit' : 'sub-lamp-card');
+                    const hintText = !mainLit
+                        ? '🔒 需先點光明燈'
+                        : (qty > 0 ? `✅ 已點 ${qty} 盞 ($${(qty * LAMP_PRICE).toLocaleString()})` : '✨ 已解鎖・可加點');
+                    const hintColor = !mainLit ? '#685B54' : (qty > 0 ? '#5B3A66' : '#0B7A37');
 
-                qtySpan.textContent = qty;
+                    return `
+                        <div class="${cardClass}">
+                            <div class="lamp-info-top">
+                                <div class="lamp-icon-badge">${meta.icon}</div>
+                                <div>
+                                    <div class="lamp-title-row">
+                                        <span class="lamp-name serif">${meta.name}</span>
+                                        <span class="lamp-price-tag">$800</span>
+                                    </div>
+                                    <p class="lamp-desc">${meta.desc}</p>
+                                </div>
+                            </div>
+                            <div class="lamp-control-row">
+                                <span class="lamp-lock-hint" style="color:${hintColor};">${hintText}</span>
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" onclick="updateMemberLampQty(${m.uid}, '${meta.id}', -1)" ${(!mainLit || qty <= 0) ? 'disabled' : ''}>－</button>
+                                    <span class="qty-val">${qty}</span>
+                                    <button type="button" class="qty-btn" onclick="updateMemberLampQty(${m.uid}, '${meta.id}', 1)" ${!mainLit ? 'disabled' : ''}>＋</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
 
-                if (!mainLit) {
-                    card.classList.add('locked');
-                    card.classList.remove('lit');
-                    hint.textContent = '🔒 需先點光明燈';
-                    hint.style.color = '#685B54';
-                    btnMinus.disabled = true;
-                    btnPlus.disabled = true;
-                } else {
-                    card.classList.remove('locked');
-                    card.classList.toggle('lit', qty > 0);
-                    hint.textContent = qty > 0 ? `✅ 已點 ${qty} 盞 ($${(qty * LAMP_PRICE).toLocaleString()})` : '✨ 已解鎖・可加點';
-                    hint.style.color = qty > 0 ? '#5B3A66' : '#0B7A37';
-                    btnMinus.disabled = qty <= 0;
-                    btnPlus.disabled = false;
-                }
+                return `
+                    <div class="member-card" id="memberCard-${m.uid}">
+                        <div class="member-card-header">
+                            <div class="member-badge-group">
+                                <span class="member-number-pill">第 ${index + 1} 位祈福人</span>
+                                <span class="member-role-hint">${isFirst ? '（主聯絡人）' : '（家庭成員）'}</span>
+                            </div>
+                            ${!isFirst ? `<button type="button" class="btn-remove-member" onclick="removeFamilyMember(${m.uid})">✕ 移除此位</button>` : ''}
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="mName-${m.uid}">祈福信眾姓名 <span class="req">*</span></label>
+                                <input type="text" id="mName-${m.uid}" class="form-control" placeholder="請輸入信眾大德芳名" value="${escapeHtml(m.name)}" oninput="updateMemberField(${m.uid}, 'name', this.value)" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="mZodiac-${m.uid}">本命生肖 <span class="req">*</span></label>
+                                <select id="mZodiac-${m.uid}" class="form-control" onchange="updateMemberField(${m.uid}, 'zodiac', this.value)" required>
+                                    ${ZODIAC_OPTIONS_HTML}
+                                </select>
+                            </div>
+
+                            <div class="form-group form-full">
+                                <label class="form-label" for="mBirth-${m.uid}">農曆生辰 / 出生年 <span class="req">*</span></label>
+                                <input type="text" id="mBirth-${m.uid}" class="form-control" placeholder="例如：民國80年農曆八月十五吉時" value="${escapeHtml(m.birth)}" oninput="updateMemberField(${m.uid}, 'birth', this.value)" required>
+                            </div>
+
+                            <div class="form-group form-full">
+                                <label class="form-label" for="mWish-${m.uid}">2027 丁未年個人祈福心願</label>
+                                <textarea id="mWish-${m.uid}" class="form-control" rows="2" oninput="updateMemberField(${m.uid}, 'wish', this.value)">${escapeHtml(m.wish)}</textarea>
+                                <div class="wish-chips">
+                                    <button type="button" class="wish-chip" onclick="setMemberWish(${m.uid}, '祈願丁未年闔家平安康泰，元辰光彩，消災解厄，事業財運皆順遂。')">闔家平安</button>
+                                    <button type="button" class="wish-chip" onclick="setMemberWish(${m.uid}, '恭請值年太歲繆丙大將軍慈悲護佑，化解犯太歲沖煞，逢凶化吉、諸事順心。')">化解太歲</button>
+                                    <button type="button" class="wish-chip" onclick="setMemberWish(${m.uid}, '祈求文昌開竅、智慧增長、金榜題名，學業與工作決策清明順遂。')">智慧考運</button>
+                                    <button type="button" class="wish-chip" onclick="setMemberWish(${m.uid}, '祈願五路財神賜福，正偏財運亨通、生意興隆、財庫豐盈。')">財源廣進</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 該位成員專屬聖燈選擇 -->
+                        <div class="member-lamps-box">
+                            <div class="member-lamps-top-bar">
+                                <span class="member-lamps-title">🪔 選擇「第 ${index + 1} 位祈福人」恭點聖燈（需先點光明燈解鎖副燈）：</span>
+                                <button type="button" class="btn-member-taisui" onclick="applyMemberTaiSuiCombo(${m.uid})">⚡ 一鍵套用【光明燈＋太歲燈】</button>
+                            </div>
+
+                            <!-- 主燈：光明燈 -->
+                            <div class="main-lamp-card ${mainLit ? 'lit' : ''}">
+                                <div class="lamp-info-top" style="flex:1; min-width:200px;">
+                                    <div class="lamp-icon-badge">🪔</div>
+                                    <div>
+                                        <div class="lamp-title-row">
+                                            <span class="lamp-name serif">光明燈（主燈）</span>
+                                            <span class="lamp-price-tag">NT$ 800 / 盞</span>
+                                        </div>
+                                        <p class="lamp-desc">照亮前途、元辰光彩、智慧增長，點亮後立即解鎖下方六大副燈。</p>
+                                    </div>
+                                </div>
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" onclick="updateMemberLampQty(${m.uid}, 'guangming', -1)" ${(m.lamps.guangming || 0) <= 0 ? 'disabled' : ''}>－</button>
+                                    <span class="qty-val">${m.lamps.guangming || 0}</span>
+                                    <button type="button" class="qty-btn" onclick="updateMemberLampQty(${m.uid}, 'guangming', 1)">＋</button>
+                                </div>
+                            </div>
+
+                            <!-- 六大副燈 -->
+                            <div class="sub-lamps-grid">
+                                ${subLampsHtml}
+                            </div>
+
+                            <!-- 個人點燈小計 -->
+                            <div class="member-subtotal-bar">
+                                <span>${personParts.length > 0 ? `已選聖燈：<strong>${personParts.join('、')}</strong>` : '尚未選擇聖燈（請先點亮主燈光明燈）'}</span>
+                                <span>小計：<strong>${personCount}</strong> 盞 ／ 結緣金 <strong>NT$ ${personAmount.toLocaleString()}</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // 同步設定每個 select 的選中生肖值
+            membersList.forEach(m => {
+                const zSel = document.getElementById(`mZodiac-${m.uid}`);
+                if (zSel) zSel.value = m.zodiac || '';
             });
 
-            // 3. 更新結算看板
-            let totalCount = 0;
-            const selectedParts = [];
-            LAMP_META.forEach(lamp => {
-                const q = lampQuantities[lamp.id] || 0;
-                if (q > 0) {
-                    totalCount += q;
-                    selectedParts.push(`${lamp.name}×${q}`);
-                }
+            updateHouseholdGrandSummary();
+        }
+
+        function updateHouseholdGrandSummary() {
+            let grandCount = 0;
+            const memberSummaries = [];
+
+            membersList.forEach((m, idx) => {
+                let mCount = 0;
+                LAMP_META.forEach(meta => {
+                    mCount += (m.lamps[meta.id] || 0);
+                });
+                grandCount += mCount;
+                const displayName = m.name.trim() || `第${idx + 1}位祈福人`;
+                memberSummaries.push(`${displayName}(${mCount}盞)`);
             });
 
-            const totalAmount = totalCount * LAMP_PRICE;
-            document.getElementById('totalLampsCount').textContent = totalCount;
-            document.getElementById('totalLampsAmount').textContent = totalAmount.toLocaleString();
-            document.getElementById('selectedLampsSummary').textContent =
-                selectedParts.length > 0
-                    ? `已選聖燈：${selectedParts.join('、')}`
-                    : '尚未選擇聖燈（請先點亮上方主燈【光明燈】）';
+            const grandAmount = grandCount * LAMP_PRICE;
+            document.getElementById('grandTotalCount').textContent = grandCount;
+            document.getElementById('grandTotalAmount').textContent = grandAmount.toLocaleString();
+            document.getElementById('householdSummaryText').innerHTML =
+                `目前共 <strong>${membersList.length}</strong> 位祈福人：${memberSummaries.join('、')}`;
+        }
+
+        function escapeHtml(str) {
+            return String(str || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
         }
 
         /* =========================================================
-           6. 表單控制與送出報名 (方案一試算表 + 方案三 LINE)
+           7. 統一聯絡資訊控制與送出多筆家庭報名
            ========================================================= */
         function toggleCashPay() {
             const isCash = document.getElementById('chkCashPay').checked;
@@ -2353,51 +2253,52 @@
             }
         }
 
-        function setWishText(text) {
-            document.getElementById('inputWish').value = text;
-        }
-
         function copyBankAccount() {
-            copyToClipboard(templeConfig.bankAccount, `已複製匯款帳號：${templeConfig.bankAccount}`);
+            copyToClipboard(TEMPLE_BANK_ACCOUNT, `已複製匯款帳號：${TEMPLE_BANK_ACCOUNT}`);
         }
 
         function handlePraySubmit(event) {
             event.preventDefault();
 
-            // 檢查主燈是否點亮
-            if (lampQuantities.guangming <= 0) {
-                showToast('請先點亮主燈【光明燈】後再送出報名！');
-                document.getElementById('lampsSection').scrollIntoView({ behavior: 'smooth' });
-                return;
+            // 1. 驗證每一位家庭成員資料與主燈
+            for (let i = 0; i < membersList.length; i++) {
+                const m = membersList[i];
+                const label = `第 ${i + 1} 位祈福人`;
+                if (!m.name.trim()) {
+                    showToast(`請填寫「${label}」的信眾姓名`);
+                    const el = document.getElementById(`mName-${m.uid}`);
+                    if (el) el.focus();
+                    return;
+                }
+                if (!m.zodiac) {
+                    showToast(`請選擇「${m.name}」的本命生肖`);
+                    const el = document.getElementById(`mZodiac-${m.uid}`);
+                    if (el) el.focus();
+                    return;
+                }
+                if (!m.birth.trim()) {
+                    showToast(`請填寫「${m.name}」的農曆生辰或出生年`);
+                    const el = document.getElementById(`mBirth-${m.uid}`);
+                    if (el) el.focus();
+                    return;
+                }
+                if ((m.lamps.guangming || 0) <= 0) {
+                    showToast(`請先為「${m.name}」點亮主燈【光明燈】再送出！`);
+                    const card = document.getElementById(`memberCard-${m.uid}`);
+                    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
             }
 
-            const name = document.getElementById('inputName').value.trim();
+            // 2. 驗證統一聯絡與匯款資訊
             const phone = document.getElementById('inputPhone').value.trim();
-            const zodiac = document.getElementById('inputZodiac').value.trim();
-            const birth = document.getElementById('inputBirth').value.trim();
             const address = document.getElementById('inputAddress').value.trim() || '台灣省善信吉居';
             const isCash = document.getElementById('chkCashPay').checked;
             const last5 = isCash ? '現場現金繳納' : document.getElementById('inputLast5').value.trim();
-            const wish = document.getElementById('inputWish').value.trim() || '祈願丁未年闔家平安康泰，元辰光彩，消災解厄，事業財運皆順遂。';
 
-            if (!name) {
-                showToast('請填寫祈福信眾姓名');
-                document.getElementById('inputName').focus();
-                return;
-            }
             if (!phone) {
-                showToast('請填寫聯絡電話');
+                showToast('請填寫統一聯絡電話');
                 document.getElementById('inputPhone').focus();
-                return;
-            }
-            if (!zodiac) {
-                showToast('請選擇本命生肖');
-                document.getElementById('inputZodiac').focus();
-                return;
-            }
-            if (!birth) {
-                showToast('請填寫農曆生辰或出生年份');
-                document.getElementById('inputBirth').focus();
                 return;
             }
             if (!isCash && !last5) {
@@ -2406,56 +2307,92 @@
                 return;
             }
 
-            // 計算總盞數與明細
-            let totalCount = 0;
-            const lampLines = [];
-            LAMP_META.forEach(lamp => {
-                const q = lampQuantities[lamp.id] || 0;
-                if (q > 0) {
-                    totalCount += q;
-                    lampLines.push(`・${lamp.name}：${q} 盞（NT$ ${(q * LAMP_PRICE).toLocaleString()}）`);
-                }
-            });
-            const totalAmount = totalCount * LAMP_PRICE;
-
-            // 生成唯一報名單號與時間戳記
+            // 3. 產生主訂單編號與時間戳記
             const now = new Date();
             const pad2 = n => String(n).padStart(2, '0');
             const timestamp = `${now.getFullYear()}/${pad2(now.getMonth() + 1)}/${pad2(now.getDate())} ${pad2(now.getHours())}:${pad2(now.getMinutes())}`;
             const rand4 = Math.floor(1000 + Math.random() * 9000);
-            const orderId = `ZL-2027-${rand4}`;
+            const baseOrderId = `ZL-2027-${rand4}`;
 
-            lastSubmissionData = {
-                orderId,
+            // 統計全戶七燈總數與每位成員明細
+            const aggregatedLamps = {
+                guangming: 0, taisui: 0, zhihui: 0, yaoshi: 0, xiaozai: 0, yuanchen: 0, caishen: 0
+            };
+            let grandTotalCount = 0;
+            const memberPayloads = [];
+            const receiptMemberBlocks = [];
+
+            membersList.forEach((m, idx) => {
+                const subOrderId = membersList.length > 1 ? `${baseOrderId}-${idx + 1}` : baseOrderId;
+                let mCount = 0;
+                const mLampNames = [];
+
+                LAMP_META.forEach(meta => {
+                    const q = m.lamps[meta.id] || 0;
+                    if (q > 0) {
+                        aggregatedLamps[meta.id] += q;
+                        mCount += q;
+                        mLampNames.push(`${meta.name}×${q}`);
+                    }
+                });
+
+                const mAmount = mCount * LAMP_PRICE;
+                grandTotalCount += mCount;
+
+                const payload = {
+                    orderId: subOrderId,
+                    timestamp,
+                    name: m.name.trim(),
+                    phone,
+                    zodiac: m.zodiac,
+                    birth: m.birth.trim(),
+                    address,
+                    guangming: m.lamps.guangming || 0,
+                    taisui: m.lamps.taisui || 0,
+                    zhihui: m.lamps.zhihui || 0,
+                    yaoshi: m.lamps.yaoshi || 0,
+                    xiaozai: m.lamps.xiaozai || 0,
+                    yuanchen: m.lamps.yuanchen || 0,
+                    caishen: m.lamps.caishen || 0,
+                    last5,
+                    wish: m.wish.trim() || '祈願丁未年闔家平安康泰，元辰光彩，消災解厄，事業財運皆順遂。',
+                    mCount,
+                    mAmount,
+                    mLampSummary: mLampNames.join('、')
+                };
+                memberPayloads.push(payload);
+
+                receiptMemberBlocks.push(
+                    `【第 ${idx + 1} 位】${payload.name}（屬${payload.zodiac}）\n` +
+                    `  子單號：${subOrderId}\n` +
+                    `  生辰：${payload.birth}\n` +
+                    `  聖燈：${payload.mLampSummary}（${mCount}盞 / NT$ ${mAmount.toLocaleString()}）`
+                );
+            });
+
+            const grandTotalAmount = grandTotalCount * LAMP_PRICE;
+
+            lastOrderSummary = {
+                baseOrderId,
                 timestamp,
-                name,
                 phone,
-                zodiac,
-                birth,
                 address,
-                guangming: lampQuantities.guangming,
-                taisui: lampQuantities.taisui,
-                zhihui: lampQuantities.zhihui,
-                yaoshi: lampQuantities.yaoshi,
-                xiaozai: lampQuantities.xiaozai,
-                yuanchen: lampQuantities.yuanchen,
-                caishen: lampQuantities.caishen,
-                totalCount,
-                totalAmount,
                 last5,
-                wish
+                grandTotalCount,
+                grandTotalAmount,
+                members: memberPayloads
             };
 
-            // 播放頌缽鐘聲並展開儀式區
+            // 4. 播放頌缽鐘聲並展開儀式區
             playTempleChime();
             const resultSec = document.getElementById('resultSection');
             resultSec.classList.add('visible');
 
-            // 逐一點亮七星蓮花燈陣動畫
-            LAMP_META.forEach((lamp, idx) => {
-                const node = document.getElementById(`node-${lamp.id}`);
-                const qtyEl = document.getElementById(`nodeQty-${lamp.id}`);
-                const q = lampQuantities[lamp.id] || 0;
+            // 點亮七星蓮花燈陣動畫
+            LAMP_META.forEach((meta, idx) => {
+                const node = document.getElementById(`node-${meta.id}`);
+                const qtyEl = document.getElementById(`nodeQty-${meta.id}`);
+                const q = aggregatedLamps[meta.id] || 0;
                 node.classList.remove('ignited');
                 qtyEl.textContent = q > 0 ? `${q} 盞` : '未點';
                 if (q > 0) {
@@ -2465,96 +2402,96 @@
                 }
             });
 
-            // 產生官方 LINE 對帳明細單文字
+            // 5. 生成全戶 LINE 對帳明細總單 (完全不含「功德金」三字)
             lastGeneratedReceiptText = [
-                `【西方直轄無極紫蓮寺｜2027丁未年點燈報名單】`,
-                `報名單號：${orderId}`,
+                `【西方直轄無極紫蓮寺｜2027丁未年點燈報名總單】`,
+                `訂單編號：${baseOrderId}（共 ${membersList.length} 位祈福人）`,
                 `報名時間：${timestamp}`,
-                `信眾姓名：${name}`,
                 `聯絡電話：${phone}`,
-                `本命生肖：屬${zodiac}`,
-                `農曆生辰：${birth}`,
                 `居住地址：${address}`,
                 `--------------------`,
-                `恭點聖燈明細：`,
-                ...lampLines,
+                ...receiptMemberBlocks,
                 `--------------------`,
-                `總計盞數：${totalCount} 盞`,
-                `總功德金：NT$ ${totalAmount.toLocaleString()}`,
-                `繳費對帳：${last5}`,
-                `祈福心願：${wish}`
+                `全戶總盞數：${grandTotalCount} 盞`,
+                `結緣金總計：NT$ ${grandTotalAmount.toLocaleString()} 元`,
+                `繳費對帳：${last5}`
             ].join('\n');
 
-            document.getElementById('receiptOrderBadge').textContent = orderId;
+            document.getElementById('receiptOrderBadge').textContent = `${baseOrderId} (共${membersList.length}人)`;
             document.getElementById('receiptTextPre').textContent = lastGeneratedReceiptText;
 
-            // 方案一：同步寫入 Google 試算表 (若廟方已設定 Web App URL)
-            syncToGoogleSheet(lastSubmissionData);
+            // 6. 逐筆寫入 Google 試算表 (永久內建 APPS_SCRIPT_URL)
+            syncFamilyToGoogleSheet(memberPayloads, baseOrderId);
 
             setTimeout(() => {
                 resultSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 250);
         }
 
-        function syncToGoogleSheet(payload) {
+        async function syncFamilyToGoogleSheet(payloads, baseOrderId) {
             const statusEl = document.getElementById('cloudSyncStatus');
-            if (!templeConfig.sheetUrl || !templeConfig.sheetUrl.startsWith('http')) {
-                statusEl.innerHTML = `📋 報名單 <strong>${payload.orderId}</strong> 已建立！請點擊下方綠色按鈕傳送至寺廟官方 LINE 完成對帳。`;
-                return;
-            }
+            statusEl.textContent = `⏳ 正在將 ${payloads.length} 位祈福人資料同步寫入紫蓮寺雲端統計表...`;
 
-            statusEl.textContent = '⏳ 正在自動寫入紫蓮寺 Google 雲端統計試算表...';
-            fetch(templeConfig.sheetUrl, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            })
-            .then(() => {
-                statusEl.innerHTML = `✅ 已自動寫入「2027丁未年點燈報名統計」雲端試算表（單號：<strong>${payload.orderId}</strong>）！建議同步點擊下方 LINE 按鈕通知廟方。`;
-            })
-            .catch(() => {
-                statusEl.innerHTML = `⚠️ 雲端連線異常，請務必點擊下方綠色按鈕將明細傳送至寺廟官方 LINE。`;
-            });
+            try {
+                // 依序寫入每位祈福人，確保試算表列號依序排列不衝突
+                for (let i = 0; i < payloads.length; i++) {
+                    await fetch(APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payloads[i])
+                    });
+                    if (payloads.length > 1 && i < payloads.length - 1) {
+                        await new Promise(resolve => setTimeout(resolve, 350));
+                    }
+                }
+                statusEl.innerHTML = `✅ 已自動寫入「2027丁未年點燈報名統計」雲端試算表（共 <strong>${payloads.length}</strong> 筆，主單號：<strong>${baseOrderId}</strong>）！請點擊下方綠色按鈕傳送至寺廟官方 LINE 完成對帳。`;
+            } catch (err) {
+                statusEl.innerHTML = `⚠️ 網路連線繁忙，請務必點擊下方綠色按鈕將全戶明細傳送至寺廟官方 LINE 完成登記。`;
+            }
         }
 
         /* =========================================================
-           7. 方案三：一鍵複製並開啟寺廟 LINE + 原生 Canvas 疏文卡
+           8. 官方 LINE 一鍵傳送 + 原生 Canvas 全戶祈福疏文圖卡
            ========================================================= */
         function copyAndOpenTempleLine() {
             if (!lastGeneratedReceiptText) return;
-            copyToClipboard(lastGeneratedReceiptText, '已複製完整報名明細！正在開啟寺廟官方 LINE...');
-            const targetLine = templeConfig.lineUrl || 'https://lin.ee/5ngRiaw';
+            copyToClipboard(lastGeneratedReceiptText, '已複製全戶報名明細！正在開啟寺廟官方 LINE...');
             setTimeout(() => {
-                window.open(targetLine, '_blank', 'noopener,noreferrer');
+                window.open(OFFICIAL_LINE_URL, '_blank', 'noopener,noreferrer');
             }, 600);
         }
 
         function downloadPetitionCardPNG() {
-            if (!lastSubmissionData) return;
-            const d = lastSubmissionData;
+            if (!lastOrderSummary) return;
+            const d = lastOrderSummary;
+
+            // 依人數動態調整畫布高度，確保多位家庭成員也能完整清晰排版
+            const extraHeight = Math.max(0, (d.members.length - 1) * 92);
+            const canvasWidth = 800;
+            const canvasHeight = 1080 + extraHeight;
 
             const canvas = document.createElement('canvas');
-            canvas.width = 800;
-            canvas.height = 1120;
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
             const ctx = canvas.getContext('2d');
 
             // 宣紙暖金底色
             ctx.fillStyle = '#FBF6EC';
-            ctx.fillRect(0, 0, 800, 1120);
+            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
             // 外框與內雙線金邊
             ctx.strokeStyle = '#5B3A66';
             ctx.lineWidth = 10;
-            ctx.strokeRect(28, 28, 744, 1064);
+            ctx.strokeRect(28, 28, canvasWidth - 56, canvasHeight - 56);
 
             ctx.strokeStyle = '#C59B49';
             ctx.lineWidth = 3;
-            ctx.strokeRect(46, 46, 708, 1028);
+            ctx.strokeRect(46, 46, canvasWidth - 92, canvasHeight - 92);
 
             // 頂部紫金橫幅
             ctx.fillStyle = '#4A2B55';
-            ctx.fillRect(46, 46, 708, 150);
+            ctx.fillRect(46, 46, canvasWidth - 92, 150);
 
             ctx.fillStyle = '#FFE8A3';
             ctx.font = 'bold 34px "Noto Serif TC", "Songti TC", "PMingLiU", serif';
@@ -2565,7 +2502,7 @@
             ctx.font = 'bold 22px "Noto Serif TC", "Songti TC", "PMingLiU", serif';
             ctx.fillText('2027 歲次丁未羊年・點燈祈福平安疏文卡', 400, 156);
 
-            // 副標題：值年太歲
+            // 值年太歲尊號
             ctx.fillStyle = '#A83226';
             ctx.font = 'bold 20px sans-serif';
             ctx.fillText('🪷 恭請諸佛菩薩暨值年太歲「繆丙大將軍」慈悲護佑 🪷', 400, 240);
@@ -2578,78 +2515,79 @@
             ctx.lineTo(715, 265);
             ctx.stroke();
 
-            // 信眾資料區
+            // 訂單與居住地址
             ctx.textAlign = 'left';
-            let curY = 315;
-            const drawField = (label, value, highlight = false) => {
-                ctx.fillStyle = '#685B54';
-                ctx.font = 'bold 20px sans-serif';
-                ctx.fillText(label, 90, curY);
+            let curY = 310;
+            ctx.fillStyle = '#685B54';
+            ctx.font = 'bold 19px sans-serif';
+            ctx.fillText('訂單編號：', 90, curY);
+            ctx.fillStyle = '#A83226';
+            ctx.font = 'bold 22px serif';
+            ctx.fillText(`${d.baseOrderId}（共 ${d.members.length} 位祈福大德）`, 205, curY);
 
-                ctx.fillStyle = highlight ? '#A83226' : '#2C221E';
-                ctx.font = highlight ? 'bold 24px serif' : '20px sans-serif';
-                ctx.fillText(value, 235, curY);
-                curY += 46;
-            };
+            curY += 38;
+            ctx.fillStyle = '#685B54';
+            ctx.font = 'bold 19px sans-serif';
+            ctx.fillText('居住吉居：', 90, curY);
+            ctx.fillStyle = '#2C221E';
+            ctx.font = '19px sans-serif';
+            ctx.fillText(d.address.length > 25 ? d.address.slice(0, 25) + '...' : d.address, 205, curY);
 
-            drawField('報名單號：', d.orderId, true);
-            drawField('信眾芳名：', `${d.name} 大德`, true);
-            drawField('本命生肖：', `屬${d.zodiac}`);
-            drawField('農曆生辰：', d.birth);
-            drawField('居住地址：', d.address.length > 22 ? d.address.slice(0, 22) + '...' : d.address);
-
-            // 恭點聖燈明細框
-            curY += 10;
+            // 祈福人與點燈明細框
+            curY += 30;
+            const boxHeight = 140 + (d.members.length * 88);
             ctx.fillStyle = '#F3EAD8';
-            ctx.fillRect(85, curY, 630, 190);
+            ctx.fillRect(80, curY, 640, boxHeight);
             ctx.strokeStyle = '#C59B49';
             ctx.lineWidth = 2;
-            ctx.strokeRect(85, curY, 630, 190);
+            ctx.strokeRect(80, curY, 640, boxHeight);
 
             ctx.fillStyle = '#4A2B55';
             ctx.font = 'bold 22px serif';
-            ctx.fillText('【恭點聖燈明細】', 105, curY + 38);
+            ctx.fillText('【祈福信眾與恭點聖燈名冊】', 100, curY + 38);
 
-            const activeLamps = LAMP_META
-                .filter(m => (d[m.id] || 0) > 0)
-                .map(m => `${m.name} × ${d[m.id]} 盞`);
+            let listY = curY + 78;
+            d.members.forEach((m, idx) => {
+                ctx.fillStyle = '#2C221E';
+                ctx.font = 'bold 20px serif';
+                ctx.fillText(`${idx + 1}. ${m.name} 大德（屬${m.zodiac}｜${m.birth}）`, 105, listY);
 
-            ctx.fillStyle = '#2C221E';
-            ctx.font = 'bold 20px sans-serif';
-            const line1 = activeLamps.slice(0, 4).join('、');
-            const line2 = activeLamps.slice(4).join('、');
-            ctx.fillText(line1, 110, curY + 82);
-            if (line2) {
-                ctx.fillText(line2, 110, curY + 116);
-            }
+                ctx.fillStyle = '#5B3A66';
+                ctx.font = 'bold 18px sans-serif';
+                ctx.fillText(`   恭點：${m.mLampSummary}（${m.mCount} 盞）`, 105, listY + 30);
 
+                // 細分隔線
+                ctx.strokeStyle = 'rgba(197, 155, 73, 0.45)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(105, listY + 46);
+                ctx.lineTo(695, listY + 46);
+                ctx.stroke();
+
+                listY += 84;
+            });
+
+            // 全戶結緣金總計 (不使用功德金三字)
             ctx.fillStyle = '#A83226';
             ctx.font = 'bold 22px sans-serif';
-            ctx.fillText(`共計 ${d.totalCount} 盞｜功德金總計：NT$ ${d.totalAmount.toLocaleString()} 元`, 110, curY + 162);
+            ctx.fillText(`全戶共計 ${d.grandTotalCount} 盞｜點燈結緣金總計：NT$ ${d.grandTotalAmount.toLocaleString()} 元`, 105, curY + boxHeight - 24);
 
-            // 祈福心願區
-            curY += 225;
+            // 祝禱文區塊
+            curY += boxHeight + 42;
             ctx.fillStyle = '#4A2B55';
             ctx.font = 'bold 21px serif';
-            ctx.fillText('【信眾祈福心願】', 90, curY);
+            ctx.fillText('【紫蓮寺祝禱疏文】', 90, curY);
 
             curY += 34;
             ctx.fillStyle = '#2C221E';
             ctx.font = '19px serif';
-            const wishChars = d.wish.split('');
-            let lineBuf = '';
-            for (let i = 0; i < wishChars.length; i++) {
-                lineBuf += wishChars[i];
-                if (lineBuf.length >= 28 || i === wishChars.length - 1) {
-                    ctx.fillText(lineBuf, 95, curY);
-                    curY += 32;
-                    lineBuf = '';
-                }
-            }
+            ctx.fillText('伏願佛光普照、聖燈長明，護佑名冊內十方善信大德：', 95, curY);
+            curY += 32;
+            ctx.fillText('丁未年元辰光彩、消災解厄、身心康泰、事業財運皆亨通！', 95, curY);
 
             // 寺廟硃砂大印 (右下角)
             const stampX = 565;
-            const stampY = 915;
+            const stampY = canvasHeight - 205;
             ctx.strokeStyle = '#B8291E';
             ctx.lineWidth = 4;
             ctx.strokeRect(stampX, stampY, 130, 130);
@@ -2666,59 +2604,22 @@
             ctx.textAlign = 'left';
             ctx.fillStyle = '#685B54';
             ctx.font = '18px serif';
-            ctx.fillText(`登錄時間：${d.timestamp}`, 90, 995);
-            ctx.fillText('佛光普照・闔家安康・福慧圓滿', 90, 1030);
+            ctx.fillText(`登錄時間：${d.timestamp}`, 90, canvasHeight - 125);
+            ctx.fillText('佛光普照・闔家安康・福慧圓滿', 90, canvasHeight - 90);
 
-            // 觸發下載
             try {
                 const dataUrl = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
-                link.download = `西方直轄無極紫蓮寺_2027點燈疏文_${d.name}.png`;
+                const firstName = d.members[0] ? d.members[0].name : '信眾';
+                link.download = `西方直轄無極紫蓮寺_2027點燈疏文_${firstName}.png`;
                 link.href = dataUrl;
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-                showToast('高清祈福疏文卡 (PNG) 已開始下載！');
+                showToast('高清全戶祈福疏文卡 (PNG) 已開始下載！');
             } catch (e) {
                 showToast('疏文卡生成完成，請截圖保存');
             }
-        }
-
-        /* =========================================================
-           8. 廟方系統設定彈窗與剪貼簿工具
-           ========================================================= */
-        function openAdminModal() {
-            document.getElementById('cfgSheetUrl').value = templeConfig.sheetUrl || '';
-            document.getElementById('cfgLineUrl').value = templeConfig.lineUrl || 'https://lin.ee/5ngRiaw';
-            document.getElementById('cfgBankName').value = templeConfig.bankName || '';
-            document.getElementById('cfgBankAccount').value = templeConfig.bankAccount || '';
-            document.getElementById('cfgBankHolder').value = templeConfig.bankHolder || '';
-            document.getElementById('adminModal').classList.add('open');
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminModal').classList.remove('open');
-        }
-
-        function saveAdminSettings() {
-            templeConfig.sheetUrl = document.getElementById('cfgSheetUrl').value.trim();
-            templeConfig.lineUrl = document.getElementById('cfgLineUrl').value.trim() || 'https://lin.ee/5ngRiaw';
-            templeConfig.bankName = document.getElementById('cfgBankName').value.trim() || '郵局 (700) / 紫蓮寺專戶';
-            templeConfig.bankAccount = document.getElementById('cfgBankAccount').value.trim() || '0001234-0567890';
-            templeConfig.bankHolder = document.getElementById('cfgBankHolder').value.trim() || '西方直轄無極紫蓮寺';
-
-            try {
-                localStorage.setItem('zilian_temple_config_2027', JSON.stringify(templeConfig));
-            } catch (e) {}
-
-            loadTempleConfig();
-            closeAdminModal();
-            showToast('✅ 廟方系統設定已儲存！');
-        }
-
-        function copyAppsScriptCode() {
-            const code = document.getElementById('appsScriptCode').textContent;
-            copyToClipboard(code, '已複製 Google Apps Script 程式碼！');
         }
 
         function copyToClipboard(text, successMsg) {
