@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
@@ -478,6 +477,13 @@
             color: var(--ink-dark);
         }
 
+        .z-star-sub {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--purple-main);
+            line-height: 1.2;
+        }
+
         .z-tag {
             font-size: 10.5px;
             padding: 1px 6px;
@@ -491,13 +497,18 @@
         }
 
         .tag-noble {
-            background: rgba(197, 155, 73, 0.2);
+            background: rgba(197, 155, 73, 0.22);
             color: #7D5812;
         }
 
         .tag-smooth {
             background: rgba(6, 199, 85, 0.12);
             color: #0B7A37;
+        }
+
+        .tag-warn {
+            background: rgba(91, 58, 102, 0.12);
+            color: var(--purple-deep);
         }
 
         .zodiac-detail-panel {
@@ -539,6 +550,22 @@
             color: var(--ink-muted);
         }
 
+        .zd-badges-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .zd-star-pill {
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 12.5px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--purple-main), var(--purple-deep));
+            color: #FFE8A3;
+        }
+
         .zd-status-badge {
             padding: 4px 12px;
             border-radius: 999px;
@@ -546,10 +573,50 @@
             font-weight: 700;
         }
 
+        .zd-stars-box {
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .zd-stars-label {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--purple-deep);
+            margin-right: 2px;
+        }
+
+        .star-chip-auspicious {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 9px;
+            border-radius: 999px;
+            background: #FFF6DF;
+            border: 1px solid #E5C16C;
+            color: #7A520A;
+        }
+
+        .star-chip-inauspicious {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 9px;
+            border-radius: 999px;
+            background: #FFF1F0;
+            border: 1px solid #E2A9A3;
+            color: #9A281D;
+        }
+
         .zd-body p {
             font-size: 14px;
             margin-bottom: 10px;
             color: var(--ink-dark);
+            line-height: 1.7;
         }
 
         .zd-meta-row {
@@ -563,13 +630,13 @@
         .zd-meta-chip {
             background: #FFFFFF;
             border: 1px solid var(--border-light);
-            padding: 5px 11px;
+            padding: 6px 11px;
             border-radius: var(--radius-sm);
         }
 
         .btn-apply-zodiac-lamps {
             width: 100%;
-            padding: 11px 16px;
+            padding: 12px 16px;
             border: none;
             border-radius: var(--radius-sm);
             background: linear-gradient(135deg, var(--purple-main), var(--purple-deep));
@@ -581,6 +648,145 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
+        }
+
+        /* 十二神煞總覽與制化指南折疊區塊 */
+        .almanac-details {
+            margin-top: 18px;
+            border: 1.5px solid #D9C6E0;
+            border-radius: var(--radius-md);
+            background: #FFFFFF;
+            overflow: hidden;
+        }
+
+        .almanac-summary {
+            list-style: none;
+            padding: 14px 16px;
+            background: linear-gradient(to right, #F7F1F9, #FCF8F0);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 14.5px;
+            font-weight: 800;
+            color: var(--purple-deep);
+        }
+
+        .almanac-summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .almanac-arrow {
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: var(--purple-main);
+            color: #FFE8A3;
+            white-space: nowrap;
+        }
+
+        .almanac-content {
+            padding: 16px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .almanac-intro {
+            font-size: 13.5px;
+            color: var(--ink-dark);
+            background: var(--bg-soft);
+            padding: 12px 14px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+
+        .table-scroll-wrap {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+        }
+
+        .shensha-table {
+            width: 100%;
+            min-width: 680px;
+            border-collapse: collapse;
+            font-size: 13px;
+            text-align: left;
+        }
+
+        .shensha-table th {
+            background: var(--purple-deep);
+            color: #FFE8A3;
+            padding: 10px 10px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .shensha-table td {
+            padding: 10px 10px;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        .shensha-table tr:nth-child(even) {
+            background: #FCF9F4;
+        }
+
+        .shensha-table tr:hover {
+            background: var(--purple-light);
+            cursor: pointer;
+        }
+
+        .zhihua-guide-box {
+            background: #FFFDF8;
+            border: 1.5px solid #E5C88B;
+            border-radius: var(--radius-md);
+            padding: 15px;
+        }
+
+        .zhihua-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--red-cinnabar);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .zhihua-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        @media (min-width: 640px) {
+            .zhihua-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .zhihua-item {
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            padding: 9px 12px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .lineage-note {
+            font-size: 12.5px;
+            color: var(--ink-muted);
+            background: var(--bg-soft);
+            padding: 10px 12px;
+            border-radius: var(--radius-sm);
+            line-height: 1.65;
         }
 
         /* =========================================================
@@ -1366,86 +1572,84 @@
             <div class="solar-notice">
                 <span style="font-size:18px;">📅</span>
                 <div>
-                    <strong>節氣交界提醒：</strong>2027 年立春為國曆 <strong>2月4日</strong>，農曆正月初一為 <strong>2月6日</strong>。凡於每年立春前出生者，命理生肖仍屬前一年份，查詢時請留意出生日期。
+                    <strong>節氣交界與流年起算提醒：</strong>2027 年為歲次丁未（羊年），命理流年從國曆 <strong>2027年2月4日（立春）</strong> 開始起算（農曆正月初一為 <strong>2月6日</strong>）。傳統民俗與通書中，「十二神煞（歲君十二神）」自當年太歲地支（未）輪轉排入十二生肖；凡於每年立春前出生者，生肖仍屬前一年份。
                 </div>
             </div>
 
             <!-- 西元 / 民國年份換算器 -->
-            <div class="converter-bar">
-                <div class="converter-controls">
-                    <div class="era-toggle">
-                        <button type="button" id="btnEraAD" class="era-btn active" onclick="setEra('AD')">西元年</button>
-                        <button type="button" id="btnEraROC" class="era-btn" onclick="setEra('ROC')">民國年</button>
-                    </div>
-                    <input type="number" id="birthYearInput" class="year-input" placeholder="請輸入西元年 (如 1991)" inputmode="numeric">
-                    <button type="button" class="btn-query" onclick="calculateZodiacByYear()">換算查詢</button>
-                </div>
-                <div id="converterResultHint" class="converter-result-hint">
-                    提示：輸入年份按下查詢，系統將自動為您帶入第 1 位祈福人的「本命生肖」與「出生年」。
-                </div>
-            </div>
-
-            <!-- 12生肖靜態網格 -->
+            <!-- 12生肖靜態網格 (含歲君十二神主星與太歲關係) -->
             <div class="zodiac-grid" id="zodiacGrid">
                 <button type="button" class="zodiac-btn" data-zodiac="鼠" onclick="selectZodiac('鼠')">
                     <span class="z-emoji">🐭</span>
                     <span class="z-name serif">子鼠</span>
+                    <span class="z-star-sub">主星：死符</span>
                     <span class="z-tag tag-fan">害太歲</span>
                 </button>
                 <button type="button" class="zodiac-btn" data-zodiac="牛" onclick="selectZodiac('牛')">
                     <span class="z-emoji">🐮</span>
                     <span class="z-name serif">丑牛</span>
-                    <span class="z-tag tag-fan">沖太歲</span>
+                    <span class="z-star-sub">主星：歲破</span>
+                    <span class="z-tag tag-fan">沖／刑太歲</span>
                 </button>
                 <button type="button" class="zodiac-btn" data-zodiac="虎" onclick="selectZodiac('虎')">
                     <span class="z-emoji">🐯</span>
                     <span class="z-name serif">寅虎</span>
-                    <span class="z-tag tag-smooth">平順吉星</span>
+                    <span class="z-star-sub">主星：龍德</span>
+                    <span class="z-tag tag-noble">紫微天喜</span>
                 </button>
                 <button type="button" class="zodiac-btn" data-zodiac="兔" onclick="selectZodiac('兔')">
                     <span class="z-emoji">🐰</span>
                     <span class="z-name serif">卯兔</span>
-                    <span class="z-tag tag-noble">三合貴人</span>
+                    <span class="z-star-sub">主星：白虎</span>
+                    <span class="z-tag tag-warn">三合／祭白虎</span>
                 </button>
                 <button type="button" class="zodiac-btn" data-zodiac="龍" onclick="selectZodiac('龍')">
                     <span class="z-emoji">🐲</span>
                     <span class="z-name serif">辰龍</span>
-                    <span class="z-tag tag-fan">刑太歲</span>
+                    <span class="z-star-sub">主星：福德</span>
+                    <span class="z-tag tag-noble">天德福星</span>
                 </button>
                 <button type="button" class="zodiac-btn" data-zodiac="蛇" onclick="selectZodiac('蛇')">
                     <span class="z-emoji">🐍</span>
                     <span class="z-name serif">巳蛇</span>
-                    <span class="z-tag tag-smooth">平順安泰</span>
+                    <span class="z-star-sub">主星：天狗</span>
+                    <span class="z-tag tag-warn">驛馬／祭天狗</span>
                 </button>
                 <button type="button" class="zodiac-btn" data-zodiac="馬" onclick="selectZodiac('馬')">
                     <span class="z-emoji">🐴</span>
                     <span class="z-name serif">午馬</span>
-                    <span class="z-tag tag-noble">六合貴人</span>
+                    <span class="z-star-sub">主星：病符</span>
+                    <span class="z-tag tag-noble">六合／制病符</span>
                 </button>
                 <button type="button" class="zodiac-btn active" data-zodiac="羊" onclick="selectZodiac('羊')">
                     <span class="z-emoji">🐑</span>
                     <span class="z-name serif">未羊</span>
-                    <span class="z-tag tag-fan">值/刑太歲</span>
+                    <span class="z-star-sub">主星：太歲</span>
+                    <span class="z-tag tag-fan">值太歲</span>
                 </button>
                 <button type="button" class="zodiac-btn" data-zodiac="猴" onclick="selectZodiac('猴')">
                     <span class="z-emoji">🐵</span>
                     <span class="z-name serif">申猴</span>
-                    <span class="z-tag tag-smooth">平順漸佳</span>
+                    <span class="z-star-sub">主星：太陽</span>
+                    <span class="z-tag tag-noble">太陽紅鸞</span>
                 </button>
                 <button type="button" class="zodiac-btn" data-zodiac="雞" onclick="selectZodiac('雞')">
                     <span class="z-emoji">🐔</span>
                     <span class="z-name serif">酉雞</span>
-                    <span class="z-tag tag-smooth">平順穩健</span>
+                    <span class="z-star-sub">主星：喪門</span>
+                    <span class="z-tag tag-warn">文昌／制喪門</span>
                 </button>
                 <button type="button" class="zodiac-btn" data-zodiac="狗" onclick="selectZodiac('狗')">
                     <span class="z-emoji">🐶</span>
                     <span class="z-name serif">戌狗</span>
-                    <span class="z-tag tag-fan">破/刑太歲</span>
+                    <span class="z-star-sub">主星：太陰</span>
+                    <span class="z-tag tag-fan">刑／破太歲</span>
                 </button>
                 <button type="button" class="zodiac-btn" data-zodiac="豬" onclick="selectZodiac('豬')">
                     <span class="z-emoji">🐷</span>
                     <span class="z-name serif">亥豬</span>
-                    <span class="z-tag tag-noble">三合貴人</span>
+                    <span class="z-star-sub">主星：五鬼</span>
+                    <span class="z-tag tag-warn">三合／制五鬼</span>
                 </button>
             </div>
 
@@ -1459,18 +1663,31 @@
                             <div class="zd-years" id="zdYears">對應年份：1943、1955、1967、1979、1991、2003、2015、2027</div>
                         </div>
                     </div>
-                    <span class="zd-status-badge tag-fan" id="zdBadge">值太歲・刑太歲（本命年）</span>
+                    <div class="zd-badges-wrap">
+                        <span class="zd-star-pill" id="zdMainStar">歲君十二神：太歲</span>
+                        <span class="zd-status-badge tag-fan" id="zdBadge">值太歲（本命年）</span>
+                    </div>
                 </div>
+
+                <!-- 伴隨吉凶星標籤列 -->
+                <div class="zd-stars-box" id="zdStarsBox">
+                    <span class="zd-stars-label">✨ 伴隨吉凶神煞：</span>
+                    <span class="star-chip-auspicious">華蓋</span>
+                    <span class="star-chip-auspicious">歲駕</span>
+                    <span class="star-chip-inauspicious">劍鋒</span>
+                    <span class="star-chip-inauspicious">伏尸</span>
+                </div>
+
                 <div class="zd-body">
                     <p id="zdFortune">
-                        <strong>【流年解析】</strong>2027 丁未羊年為本命年「值太歲」兼「刑太歲」，太歲當頭坐，無喜恐有禍。今年思緒較易起伏、工作與人際變動較多，重大決策宜三思而後行，保持心境平和、多行善布施。
+                        <strong>【流年核心提醒】</strong>伴隨華蓋、歲駕、劍鋒、伏尸。責任與壓力放大，宜沈澱進修、忌盲目擴張，留意血光與身心疲勞。
                     </p>
                     <p id="zdAdvice">
-                        <strong>【紫蓮寺化解之道】</strong>建議恭點主燈【光明燈】搭配【太歲燈】與【元辰燈】，祈求值年太歲繆丙大將軍慈悲護佑，穩固本命元辰、化險為夷。
+                        <strong>【民間制化與紫蓮寺點燈建議】</strong>屬羊為丁未年「值太歲（本命年）」，宜安奉值年太歲繆丙大將軍。建議恭點主燈【光明燈】搭配【太歲燈】與【元辰燈】，祈求安太歲化煞、穩固本命元辰、身心康泰。
                     </p>
                     <div class="zd-meta-row">
-                        <span class="zd-meta-chip" id="zdColor">🎨 開運色系：<strong>正紅、暖金、米白</strong></span>
-                        <span class="zd-meta-chip" id="zdRecText">🪔 推薦燈種：<strong>光明燈 ＋ 太歲燈 ＋ 元辰燈</strong></span>
+                        <span class="zd-meta-chip" id="zdZhihua">🛡️ 民俗制化重點：<strong>安太歲（值太歲本命年）</strong></span>
+                        <span class="zd-meta-chip" id="zdRecText">🪔 推薦聖燈：<strong>光明燈 ＋ 太歲燈 ＋ 元辰燈</strong></span>
                     </div>
                     <button type="button" class="btn-apply-zodiac-lamps" onclick="applyRecommendedLampsToFirstMember()">
                         <span>✨</span>
@@ -1478,6 +1695,127 @@
                     </button>
                 </div>
             </div>
+
+            <!-- 可展開的 2027 丁未羊年十二神煞總覽表與民間制化指南 -->
+            <details class="almanac-details">
+                <summary class="almanac-summary">
+                    <span>📜 點擊展開：2027 丁未羊年「十二生肖與十二神煞（歲君十二神）」完整對照表 ＆ 民間制化指南</span>
+                    <span class="almanac-arrow">展開總表 ▾</span>
+                </summary>
+                <div class="almanac-content">
+                    <div class="almanac-intro">
+                        <strong>【歲君十二神排法說明】</strong>2027年為歲次丁未（羊年），命理流年從 <strong>2027年2月4日（立春）</strong> 開始起算。傳統民俗與通書中，「十二神煞」（又稱「歲君十二神」或「流年十二星」）從當年太歲地支（未）起算，依固定順序輪轉排入十二生肖，用來判斷各生肖該年的基本氣場與吉凶重點（點擊表格任一列可立即切換上方詳細診斷）：
+                    </div>
+
+                    <div class="table-scroll-wrap">
+                        <table class="shensha-table">
+                            <thead>
+                                <tr>
+                                    <th>生肖 (地支)</th>
+                                    <th>歲君十二神 (主星)</th>
+                                    <th>太歲關係</th>
+                                    <th>伴隨吉凶星與流年核心提醒</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr onclick="selectZodiac('羊')">
+                                    <td><strong>羊 (未)</strong></td>
+                                    <td><strong>太歲</strong></td>
+                                    <td>值太歲（本命年）</td>
+                                    <td>伴隨華蓋、歲駕、劍鋒、伏尸。責任與壓力放大，宜沈澱進修、忌盲目擴張，留意血光與身心疲勞。</td>
+                                </tr>
+                                <tr onclick="selectZodiac('猴')">
+                                    <td><strong>猴 (申)</strong></td>
+                                    <td><strong>太陽</strong></td>
+                                    <td>平穩（無直接沖合）</td>
+                                    <td>伴隨紅鸞、劫煞、天空。太陽照臨、人緣與桃花旺，但防應酬破財或情緒波動。</td>
+                                </tr>
+                                <tr onclick="selectZodiac('雞')">
+                                    <td><strong>雞 (酉)</strong></td>
+                                    <td><strong>喪門</strong></td>
+                                    <td>平穩（無直接沖合）</td>
+                                    <td>伴隨天乙貴人、文昌、地喪。雖有喪門星，但得丁年雙貴人與文昌護持，利於考試進修，多關心家中長輩健康。</td>
+                                </tr>
+                                <tr onclick="selectZodiac('狗')">
+                                    <td><strong>狗 (戌)</strong></td>
+                                    <td><strong>太陰</strong></td>
+                                    <td>刑太歲、破太歲</td>
+                                    <td>伴隨地解、貫索、勾神。有女性貴人相助，但易受人際或合夥牽連，切忌作保、借貸或簽署模糊合約。</td>
+                                </tr>
+                                <tr onclick="selectZodiac('豬')">
+                                    <td><strong>豬 (亥)</strong></td>
+                                    <td><strong>五鬼</strong></td>
+                                    <td>三合太歲（亥卯未）</td>
+                                    <td>伴隨天乙貴人、三台、官符、指背。事業有貴人提拔與升遷機會，但易招小人嫉妒與文書是非，處事須依規矩。</td>
+                                </tr>
+                                <tr onclick="selectZodiac('鼠')">
+                                    <td><strong>鼠 (子)</strong></td>
+                                    <td><strong>死符</strong></td>
+                                    <td>害太歲（子未害）</td>
+                                    <td>伴隨月德、小耗、咸池。防暗中溝通誤會、爛桃花與小額破財，幸有大吉星月德逢凶化吉。</td>
+                                </tr>
+                                <tr onclick="selectZodiac('牛')">
+                                    <td><strong>牛 (丑)</strong></td>
+                                    <td><strong>歲破</strong></td>
+                                    <td>沖太歲、刑太歲</td>
+                                    <td>伴隨大耗、唐符、欄干。變動最大的一宮（易有搬家、轉職或大筆開銷），宜主動求變、預留緊急預備金。</td>
+                                </tr>
+                                <tr onclick="selectZodiac('虎')">
+                                    <td><strong>虎 (寅)</strong></td>
+                                    <td><strong>龍德</strong></td>
+                                    <td>平穩（無直接沖合）</td>
+                                    <td>伴隨紫微、天喜、暴敗。雙大吉星與喜星高照，貴人運強、利婚嫁喜慶或事業突破，但順境中忌得意忘形。</td>
+                                </tr>
+                                <tr onclick="selectZodiac('兔')">
+                                    <td><strong>兔 (卯)</strong></td>
+                                    <td><strong>白虎</strong></td>
+                                    <td>三合太歲（亥卯未）</td>
+                                    <td>伴隨將星、金匱、血刃、浮沉。權責提升、利於存錢理財與合作；白虎與血刃主意外跌撞或金屬小傷，注意交通安全。</td>
+                                </tr>
+                                <tr onclick="selectZodiac('龍')">
+                                    <td><strong>龍 (辰)</strong></td>
+                                    <td><strong>福德</strong></td>
+                                    <td>平穩（無直接沖合）</td>
+                                    <td>伴隨天德、福星、卷舌、絞煞。福星高照、整體順遂，唯一破口在口舌是非，謹言慎行即可。</td>
+                                </tr>
+                                <tr onclick="selectZodiac('蛇')">
+                                    <td><strong>蛇 (巳)</strong></td>
+                                    <td><strong>天狗</strong></td>
+                                    <td>平穩（無直接沖合）</td>
+                                    <td>伴隨驛馬、八座、吊客。利於外出發展、出差或調動；天狗與吊客提醒出門在外注意行車安全與隨身財物。</td>
+                                </tr>
+                                <tr onclick="selectZodiac('馬')">
+                                    <td><strong>馬 (午)</strong></td>
+                                    <td><strong>病符</strong></td>
+                                    <td>六合太歲（午未合）</td>
+                                    <td>伴隨祿神（丁年祿在午）、陌越。走過前一年本命年後運勢大幅回升，財祿與合作順暢，唯須注意過勞與舊疾復發。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="zhihua-guide-box">
+                        <div class="zhihua-title serif">🏮 民間習俗「制化」重點與宮廟點燈對應提醒</div>
+                        <div class="zhihua-grid">
+                            <div class="zhihua-item">
+                                <strong>🔸 安太歲：</strong>屬羊（值太歲）、屬牛（沖太歲，兼制歲破），本寺亦納入屬狗（刑破太歲）、屬鼠（害太歲）安奉太歲燈，護佑流年安穩。
+                            </div>
+                            <div class="zhihua-item">
+                                <strong>🔸 祭白虎：</strong>屬兔（流年逢白虎、血刃，傳統常於驚蟄前後祭拜，建議加點【消災燈】護佑出入平安）。
+                            </div>
+                            <div class="zhihua-item">
+                                <strong>🔸 祭天狗：</strong>屬蛇（流年逢天狗、吊客，建議加點【消災燈】護佑外出差旅與行車平安）。
+                            </div>
+                            <div class="zhihua-item">
+                                <strong>🔸 制五鬼／死符／病符／喪門：</strong>分別對應屬豬（五鬼，宜點【消災燈】）、屬鼠（死符，宜點【太歲燈／消災燈】）、屬馬（病符，宜點【藥師燈】）、屬雞（喪門，宜點【智慧燈／藥師燈】）。
+                            </div>
+                        </div>
+                        <div class="lineage-note">
+                            <strong>※ 流派差異說明：</strong>台灣各地宮廟與農民曆在排法上，有時會出現「順行（順時針）」與「逆行（逆時針）」兩種系統（例如部分農民曆會將太陽、喪門等星逆排，導致馬逢太陽、蛇逢喪門）。辦理安太歲、祭改或線上點燈時，直接依照「西方直轄無極紫蓮寺」公告之年度對照表登記即可。
+                        </div>
+                    </div>
+                </div>
+            </details>
         </section>
 
         <!-- =========================================================
@@ -1660,116 +1998,152 @@
         const LAMP_PRICE = 800;
 
         /* =========================================================
-           2. 12生肖流年運勢資料庫與七大聖燈設定
+           2. 12生肖流年運勢資料庫（融合歲君十二神與民間制化對應）
            ========================================================= */
         const ZODIAC_DATA = {
-            '鼠': {
-                branch: '子鼠', emoji: '🐭', years: '1936、1948、1960、1972、1984、1996、2008、2020',
-                statusText: '害太歲（犯太歲）', statusClass: 'tag-fan',
-                fortune: '2027 丁未年「子未相害」，流年易遇小人暗算、溝通誤會或人際疏離。行事宜低調謹慎，重要合約與財務往來務必白紙黑字確認。',
-                advice: '建議恭點主燈【光明燈】搭配【太歲燈】與【消災燈】，化解害太歲是非口舌，護佑人際和諧、平安順遂。',
-                color: '寶藍、珍珠白、金色',
-                lamps: ['guangming', 'taisui', 'xiaozai'],
-                recLabel: '光明燈 ＋ 太歲燈 ＋ 消災燈'
-            },
-            '牛': {
-                branch: '丑牛', emoji: '🐮', years: '1937、1949、1961、1973、1985、1997、2009、2021',
-                statusText: '沖太歲（正沖太歲）', statusClass: 'tag-fan',
-                fortune: '2027 丁未年「丑未相沖」，為年度變動幅度最大的生肖，事業、居住環境或財務皆可能面臨轉折與挑戰，宜主動求變、保守理財。',
-                advice: '務必恭點主燈【光明燈】搭配【太歲燈】與【元辰燈】，安奉值年太歲繆丙大將軍，穩固本命氣場、化衝擊為轉機。',
-                color: '正紅、暖橘、大地棕',
-                lamps: ['guangming', 'taisui', 'yuanchen'],
-                recLabel: '光明燈 ＋ 太歲燈 ＋ 元辰燈'
-            },
-            '虎': {
-                branch: '寅虎', emoji: '🐯', years: '1938、1950、1962、1974、1986、1998、2010、2022',
-                statusText: '平順吉星（無沖無克）', statusClass: 'tag-smooth',
-                fortune: '2027 丁未年運勢平穩向上，過往壓力逐漸舒緩，事業與學業皆能按部就班累積成果，宜把握機會進修充電、拓展人脈。',
-                advice: '建議恭點主燈【光明燈】搭配【智慧燈】或【財神燈】，助長事業考運與正財收益更上一層樓。',
-                color: '翠綠、天藍、暖金',
-                lamps: ['guangming', 'zhihui'],
-                recLabel: '光明燈 ＋ 智慧燈'
-            },
-            '兔': {
-                branch: '卯兔', emoji: '🐰', years: '1939、1951、1963、1975、1987、1999、2011、2023',
-                statusText: '三合貴人（吉星高照）', statusClass: 'tag-noble',
-                fortune: '2027 丁未年「亥卯未三合」，貴人運極為旺盛！在職場合作、創業拓展或長輩提攜方面皆有良機，只要積極行動必有豐碩收穫。',
-                advice: '建議恭點主燈【光明燈】搭配【財神燈】，乘著三合貴人東風，催旺正偏財運與事業鴻圖。',
-                color: '草綠、米白、淡紫',
-                lamps: ['guangming', 'caishen'],
-                recLabel: '光明燈 ＋ 財神燈'
-            },
-            '龍': {
-                branch: '辰龍', emoji: '🐲', years: '1940、1952、1964、1976、1988、2000、2012、2024',
-                statusText: '刑太歲（犯太歲）', statusClass: 'tag-fan',
-                fortune: '2027 丁未年「辰未相刑」，容易在細節處產生執著或與身邊親友發生摩擦，留意腸胃與作息保養，凡事退一步海闊天空。',
-                advice: '建議恭點主燈【光明燈】搭配【太歲燈】與【藥師燈】，化解刑太歲波折，護佑身心康泰、諸事圓融。',
-                color: '金黃、銀白、淺灰',
-                lamps: ['guangming', 'taisui', 'yaoshi'],
-                recLabel: '光明燈 ＋ 太歲燈 ＋ 藥師燈'
-            },
-            '蛇': {
-                branch: '巳蛇', emoji: '🐍', years: '1941、1953、1965、1977、1989、2001、2013、2025',
-                statusText: '平順安泰（火土相生）', statusClass: 'tag-smooth',
-                fortune: '2027 丁未年五行火土相生，才華容易被看見，創作、企劃與專業技術領域表現亮眼，注意勞逸結合即可穩健前行。',
-                advice: '建議恭點主燈【光明燈】搭配【藥師燈】，守護元氣與健康，讓事業與生活皆安穩無憂。',
-                color: '紫紅、粉橘、米黃',
-                lamps: ['guangming', 'yaoshi'],
-                recLabel: '光明燈 ＋ 藥師燈'
-            },
-            '馬': {
-                branch: '午馬', emoji: '🐴', years: '1942、1954、1966、1978、1990、2002、2014、2026',
-                statusText: '六合貴人（太歲相合）', statusClass: 'tag-noble',
-                fortune: '揮別去年本命年，2027 丁未年迎來「午未六合」大吉之年！人緣極佳、左右逢源，極利於合作簽約、置產規劃與開啟新計畫。',
-                advice: '建議恭點主燈【光明燈】搭配【財神燈】與【元辰燈】，讓六合好運倍增、財庫飽滿豐盈。',
-                color: '酒紅、琥珀金、暖褐',
-                lamps: ['guangming', 'caishen', 'yuanchen'],
-                recLabel: '光明燈 ＋ 財神燈 ＋ 元辰燈'
-            },
             '羊': {
                 branch: '未羊', emoji: '🐑', years: '1943、1955、1967、1979、1991、2003、2015、2027',
-                statusText: '值太歲・刑太歲（本命年）', statusClass: 'tag-fan',
-                fortune: '2027 丁未羊年為本命年「值太歲」兼「刑太歲」，太歲當頭坐，無喜恐有禍。今年思緒較易起伏、工作與人際變動較多，重大決策宜三思而後行。',
-                advice: '建議恭點主燈【光明燈】搭配【太歲燈】與【元辰燈】，祈求值年太歲繆丙大將軍慈悲護佑，穩固本命元辰、化險為夷。',
-                color: '正紅、暖金、米白',
+                mainStar: '太歲',
+                statusText: '值太歲（本命年）', statusClass: 'tag-fan',
+                goodStars: ['華蓋', '歲駕'],
+                badStars: ['劍鋒', '伏尸'],
+                fortune: '伴隨華蓋、歲駕、劍鋒、伏尸。責任與壓力放大，宜沈澱進修、忌盲目擴張，留意血光與身心疲勞。',
+                advice: '屬羊為丁未年「值太歲（本命年）」，宜安奉值年太歲繆丙大將軍。建議恭點主燈【光明燈】搭配【太歲燈】與【元辰燈】，祈求安太歲化煞、穩固本命元辰、身心康泰。',
+                zhihua: '安太歲（值太歲本命年）',
                 lamps: ['guangming', 'taisui', 'yuanchen'],
                 recLabel: '光明燈 ＋ 太歲燈 ＋ 元辰燈'
             },
             '猴': {
                 branch: '申猴', emoji: '🐵', years: '1944、1956、1968、1980、1992、2004、2016',
-                statusText: '平順漸佳（土金相生）', statusClass: 'tag-smooth',
-                fortune: '2027 丁未年未土生申金，付出與回報成正比，暗中有貴人扶持，適合深耕專業領域、累積實力與穩健儲蓄。',
-                advice: '建議恭點主燈【光明燈】搭配【智慧燈】，助益靈感湧現、考運與職場表現節節高升。',
-                color: '珍珠白、淡金、淺藍',
-                lamps: ['guangming', 'zhihui'],
-                recLabel: '光明燈 ＋ 智慧燈'
+                mainStar: '太陽',
+                statusText: '平穩（無直接沖合）', statusClass: 'tag-noble',
+                goodStars: ['太陽', '紅鸞'],
+                badStars: ['劫煞', '天空'],
+                fortune: '伴隨紅鸞、劫煞、天空。太陽照臨、人緣與桃花旺，但防應酬破財或情緒波動。',
+                advice: '得「太陽」與「紅鸞」吉星照臨，人際魅力與貴人運佳；為防「劫煞、天空」帶來應酬開銷，建議恭點主燈【光明燈】搭配【財神燈】，守住財庫、福氣綿延。',
+                zhihua: '順星迎吉・守財防耗',
+                lamps: ['guangming', 'caishen'],
+                recLabel: '光明燈 ＋ 財神燈'
             },
             '雞': {
                 branch: '酉雞', emoji: '🐔', years: '1945、1957、1969、1981、1993、2005、2017',
-                statusText: '平順穩健（福星照臨）', statusClass: 'tag-smooth',
-                fortune: '2027 丁未年整體磁場溫和安定，家庭氣氛和樂，工作按部就班即可維持佳績，惟需留意季節交替時的呼吸道與作息調養。',
-                advice: '建議恭點主燈【光明燈】搭配【藥師燈】，祈願闔家身心安康、延年益壽、百病不侵。',
-                color: '米黃、香檳金、乳白',
-                lamps: ['guangming', 'yaoshi'],
-                recLabel: '光明燈 ＋ 藥師燈'
+                mainStar: '喪門',
+                statusText: '平穩（制喪門・文昌護持）', statusClass: 'tag-warn',
+                goodStars: ['天乙貴人', '文昌'],
+                badStars: ['喪門', '地喪'],
+                fortune: '伴隨天乙貴人、文昌、地喪。雖有喪門星，但得丁年雙貴人與文昌護持，利於考試進修，多關心家中長輩健康。',
+                advice: '流年逢「喪門」與「地喪」，民間習俗宜「制喪門」並多關懷長輩健康；幸有天乙貴人與文昌相助，建議恭點主燈【光明燈】搭配【智慧燈】與【藥師燈】，助旺考運並祈願闔家安康。',
+                zhihua: '制喪門・護長輩安康',
+                lamps: ['guangming', 'zhihui', 'yaoshi'],
+                recLabel: '光明燈 ＋ 智慧燈 ＋ 藥師燈'
             },
             '狗': {
                 branch: '戌狗', emoji: '🐶', years: '1946、1958、1970、1982、1994、2006、2018',
-                statusText: '破太歲・刑太歲（犯太歲）', statusClass: 'tag-fan',
-                fortune: '2027 丁未年「戌未相破兼相刑」，易有計畫突生變數、破財損耗或人際誤解，切忌衝動投資或替人作保，凡事留有餘地。',
-                advice: '務必恭點主燈【光明燈】搭配【太歲燈】與【消災燈】，化解破太歲損耗與官非口舌，轉危為安。',
-                color: '翠綠、暖紅、米白',
+                mainStar: '太陰',
+                statusText: '刑太歲、破太歲', statusClass: 'tag-fan',
+                goodStars: ['太陰', '地解'],
+                badStars: ['貫索', '勾神'],
+                fortune: '伴隨地解、貫索、勾神。有女性貴人相助，但易受人際或合夥牽連，切忌作保、借貸或簽署模糊合約。',
+                advice: '屬狗逢「刑太歲、破太歲」兼「貫索、勾神」，建議恭點主燈【光明燈】搭配【太歲燈】與【消災燈】，化解人際合夥牽連與文書官非，得太陰女性貴人相助化險為夷。',
+                zhihua: '安太歲（偏沖刑破）・解貫索',
                 lamps: ['guangming', 'taisui', 'xiaozai'],
                 recLabel: '光明燈 ＋ 太歲燈 ＋ 消災燈'
             },
             '豬': {
                 branch: '亥豬', emoji: '🐷', years: '1947、1959、1971、1983、1995、2007、2019',
-                statusText: '三合貴人（鴻運當頭）', statusClass: 'tag-noble',
-                fortune: '2027 丁未年「亥卯未三合」，喜事頻傳、福星高照！事業合作順水推舟，財運亦有亮眼進帳，是適合大展身手的豐收之年。',
-                advice: '建議恭點主燈【光明燈】搭配【財神燈】，讓三合福氣化為實質財富，財源滾滾而來。',
-                color: '深藍、水綠、暖金',
-                lamps: ['guangming', 'caishen'],
-                recLabel: '光明燈 ＋ 財神燈'
+                mainStar: '五鬼',
+                statusText: '三合太歲（亥卯未・制五鬼）', statusClass: 'tag-warn',
+                goodStars: ['天乙貴人', '三台'],
+                badStars: ['五鬼', '官符', '指背'],
+                fortune: '伴隨天乙貴人、三台、官符、指背。事業有貴人提拔與升遷機會，但易招小人嫉妒與文書是非，處事須依規矩。',
+                advice: '雖得「亥卯未三合」與天乙貴人、三台助升遷，但主星逢「五鬼」伴「官符、指背」，民間習俗宜「制五鬼」。建議恭點主燈【光明燈】搭配【消災燈】，遠離小人嫉妒與文書是非。',
+                zhihua: '制五鬼・化官符小人',
+                lamps: ['guangming', 'xiaozai'],
+                recLabel: '光明燈 ＋ 消災燈'
+            },
+            '鼠': {
+                branch: '子鼠', emoji: '🐭', years: '1936、1948、1960、1972、1984、1996、2008、2020',
+                mainStar: '死符',
+                statusText: '害太歲（子未害・制死符）', statusClass: 'tag-fan',
+                goodStars: ['月德'],
+                badStars: ['死符', '小耗', '咸池'],
+                fortune: '伴隨月德、小耗、咸池。防暗中溝通誤會、爛桃花與小額破財，幸有大吉星月德逢凶化吉。',
+                advice: '屬鼠逢「害太歲」且主星為「死符」，民間習俗宜「安太歲」兼「制死符」。建議恭點主燈【光明燈】搭配【太歲燈】與【消災燈】，借大吉星月德之力逢凶化吉、防小耗破財。',
+                zhihua: '安太歲（害太歲）・制死符',
+                lamps: ['guangming', 'taisui', 'xiaozai'],
+                recLabel: '光明燈 ＋ 太歲燈 ＋ 消災燈'
+            },
+            '牛': {
+                branch: '丑牛', emoji: '🐮', years: '1937、1949、1961、1973、1985、1997、2009、2021',
+                mainStar: '歲破',
+                statusText: '沖太歲、刑太歲', statusClass: 'tag-fan',
+                goodStars: ['唐符'],
+                badStars: ['歲破', '大耗', '欄干'],
+                fortune: '伴隨大耗、唐符、欄干。變動最大的一宮（易有搬家、轉職或大筆開銷），宜主動求變、預留緊急預備金。',
+                advice: '屬牛為「沖太歲、刑太歲」且主星逢「歲破、大耗」，為年度變動最大的一宮。務必恭點主燈【光明燈】搭配【太歲燈】與【財神燈】，安太歲兼制歲破，穩固財庫與家運。',
+                zhihua: '安太歲（沖太歲・兼制歲破）',
+                lamps: ['guangming', 'taisui', 'caishen'],
+                recLabel: '光明燈 ＋ 太歲燈 ＋ 財神燈'
+            },
+            '虎': {
+                branch: '寅虎', emoji: '🐯', years: '1938、1950、1962、1974、1986、1998、2010、2022',
+                mainStar: '龍德',
+                statusText: '平穩（紫微天喜高照）', statusClass: 'tag-noble',
+                goodStars: ['龍德', '紫微', '天喜'],
+                badStars: ['暴敗'],
+                fortune: '伴隨紫微、天喜、暴敗。雙大吉星與喜星高照，貴人運強、利婚嫁喜慶或事業突破，但順境中忌得意忘形。',
+                advice: '主星「龍德」加上「紫微、天喜」雙大吉星照臨，喜氣洋洋、貴人運極強！建議恭點主燈【光明燈】搭配【元辰燈】，穩固鴻運氣場、防止暴敗波動，讓事業喜事順遂圓滿。',
+                zhihua: '迎龍德紫微・穩固吉運',
+                lamps: ['guangming', 'yuanchen'],
+                recLabel: '光明燈 ＋ 元辰燈'
+            },
+            '兔': {
+                branch: '卯兔', emoji: '🐰', years: '1939、1951、1963、1975、1987、1999、2011、2023',
+                mainStar: '白虎',
+                statusText: '三合太歲（亥卯未・祭白虎）', statusClass: 'tag-warn',
+                goodStars: ['將星', '金匱'],
+                badStars: ['白虎', '血刃', '浮沉'],
+                fortune: '伴隨將星、金匱、血刃、浮沉。權責提升、利於存錢理財與合作；白虎與血刃主意外跌撞或金屬小傷，注意交通安全。',
+                advice: '雖有「亥卯未三合」與將星、金匱助權責與財庫，但主星逢「白虎」伴「血刃」，民間習俗常於驚蟄前後「祭白虎」。建議恭點主燈【光明燈】搭配【消災燈】與【財神燈】，防血光跌撞並聚財納福。',
+                zhihua: '祭白虎（防白虎血刃意外）',
+                lamps: ['guangming', 'xiaozai', 'caishen'],
+                recLabel: '光明燈 ＋ 消災燈 ＋ 財神燈'
+            },
+            '龍': {
+                branch: '辰龍', emoji: '🐲', years: '1940、1952、1964、1976、1988、2000、2012、2024',
+                mainStar: '福德',
+                statusText: '平穩（天德福星高照）', statusClass: 'tag-noble',
+                goodStars: ['福德', '天德', '福星'],
+                badStars: ['卷舌', '絞煞'],
+                fortune: '伴隨天德、福星、卷舌、絞煞。福星高照、整體順遂，唯一破口在口舌是非，謹言慎行即可。',
+                advice: '主星「福德」會合「天德、福星」，整體運勢相當順遂；為防「卷舌、絞煞」帶來無謂口舌是非，建議恭點主燈【光明燈】搭配【消災燈】，化解口舌、萬事吉祥。',
+                zhihua: '迎福德天德・化卷舌是非',
+                lamps: ['guangming', 'xiaozai'],
+                recLabel: '光明燈 ＋ 消災燈'
+            },
+            '蛇': {
+                branch: '巳蛇', emoji: '🐍', years: '1941、1953、1965、1977、1989、2001、2013、2025',
+                mainStar: '天狗',
+                statusText: '平穩（驛馬八座・祭天狗）', statusClass: 'tag-warn',
+                goodStars: ['驛馬', '八座'],
+                badStars: ['天狗', '吊客'],
+                fortune: '伴隨驛馬、八座、吊客。利於外出發展、出差或調動；天狗與吊客提醒出門在外注意行車安全與隨身財物。',
+                advice: '「驛馬、八座」利於外出發展與職務升遷，但主星逢「天狗」伴「吊客」，民間習俗宜「祭天狗」。建議恭點主燈【光明燈】搭配【消災燈】，祈求行車出入平安、遠行順遂。',
+                zhihua: '祭天狗（保行車出入平安）',
+                lamps: ['guangming', 'xiaozai'],
+                recLabel: '光明燈 ＋ 消災燈'
+            },
+            '馬': {
+                branch: '午馬', emoji: '🐴', years: '1942、1954、1966、1978、1990、2002、2014、2026',
+                mainStar: '病符',
+                statusText: '六合太歲（午未合・制病符）', statusClass: 'tag-noble',
+                goodStars: ['祿神（丁年祿在午）', '陌越'],
+                badStars: ['病符'],
+                fortune: '伴隨祿神（丁年祿在午）、陌越。走過前一年本命年後運勢大幅回升，財祿與合作順暢，唯須注意過勞與舊疾復發。',
+                advice: '迎來「午未六合」與「丁年祿神」進駐，財祿與合作大幅回升！唯主星逢「病符」，民間習俗宜「制病符」，建議恭點主燈【光明燈】搭配【藥師燈】與【財神燈】，守護健康不致過勞並廣納財祿。',
+                zhihua: '制病符（防過勞舊疾）・迎祿神',
+                lamps: ['guangming', 'yaoshi', 'caishen'],
+                recLabel: '光明燈 ＋ 藥師燈 ＋ 財神燈'
             }
         };
 
@@ -1785,18 +2159,18 @@
 
         const ZODIAC_OPTIONS_HTML = `
             <option value="">-- 請選擇本命生肖 --</option>
-            <option value="鼠">子鼠（害太歲・犯太歲）</option>
-            <option value="牛">丑牛（沖太歲・犯太歲）</option>
-            <option value="虎">寅虎（平順吉星）</option>
-            <option value="兔">卯兔（三合貴人）</option>
-            <option value="龍">辰龍（刑太歲・犯太歲）</option>
-            <option value="蛇">巳蛇（平順安泰）</option>
-            <option value="馬">午馬（六合貴人）</option>
-            <option value="羊" selected>未羊（值太歲・刑太歲）</option>
-            <option value="猴">申猴（平順漸佳）</option>
-            <option value="雞">酉雞（平順穩健）</option>
-            <option value="狗">戌狗（破太歲・刑太歲）</option>
-            <option value="豬">亥豬（三合貴人）</option>
+            <option value="羊" selected>未羊（主星：太歲｜值太歲・本命年）</option>
+            <option value="猴">申猴（主星：太陽｜平穩・太陽紅鸞）</option>
+            <option value="雞">酉雞（主星：喪門｜平穩・文昌貴人）</option>
+            <option value="狗">戌狗（主星：太陰｜刑太歲・破太歲）</option>
+            <option value="豬">亥豬（主星：五鬼｜三合太歲・制五鬼）</option>
+            <option value="鼠">子鼠（主星：死符｜害太歲・制死符）</option>
+            <option value="牛">丑牛（主星：歲破｜沖太歲・刑太歲）</option>
+            <option value="虎">寅虎（主星：龍德｜平穩・紫微天喜）</option>
+            <option value="兔">卯兔（主星：白虎｜三合太歲・祭白虎）</option>
+            <option value="龍">辰龍（主星：福德｜平穩・天德福星）</option>
+            <option value="蛇">巳蛇（主星：天狗｜平穩・祭天狗）</option>
+            <option value="馬">午馬（主星：病符｜六合太歲・制病符）</option>
         `;
 
         const ZODIAC_ORDER = ['鼠', '牛', '虎', '兔', '龍', '蛇', '馬', '羊', '猴', '雞', '狗', '豬'];
@@ -1938,16 +2312,23 @@
             document.getElementById('zdEmoji').textContent = info.emoji;
             document.getElementById('zdTitle').textContent = `${info.branch}｜2027 丁未年流年運勢`;
             document.getElementById('zdYears').textContent = `對應年份：${info.years}`;
+            document.getElementById('zdMainStar').textContent = `歲君十二神：${info.mainStar}`;
 
             const badge = document.getElementById('zdBadge');
             badge.textContent = info.statusText;
             badge.className = `zd-status-badge ${info.statusClass}`;
 
-            document.getElementById('zdFortune').innerHTML = `<strong>【流年解析】</strong>${info.fortune}`;
-            document.getElementById('zdAdvice').innerHTML = `<strong>【紫蓮寺化解之道】</strong>${info.advice}`;
-            document.getElementById('zdColor').innerHTML = `🎨 開運色系：<strong>${info.color}</strong>`;
-            document.getElementById('zdRecText').innerHTML = `🪔 推薦燈種：<strong>${info.recLabel}</strong>`;
-            document.getElementById('btnApplyZodiacText').textContent = `一鍵將「屬${zodiac}」推薦聖燈帶入第 1 位祈福人`;
+            // 更新伴隨吉凶神煞標籤
+            const starsBox = document.getElementById('zdStarsBox');
+            const goodHtml = (info.goodStars || []).map(s => `<span class="star-chip-auspicious">吉星・${s}</span>`).join('');
+            const badHtml = (info.badStars || []).map(s => `<span class="star-chip-inauspicious">神煞・${s}</span>`).join('');
+            starsBox.innerHTML = `<span class="zd-stars-label">✨ 伴隨吉凶神煞：</span>${goodHtml}${badHtml}`;
+
+            document.getElementById('zdFortune').innerHTML = `<strong>【流年核心提醒】</strong>${info.fortune}`;
+            document.getElementById('zdAdvice').innerHTML = `<strong>【民間制化與紫蓮寺點燈建議】</strong>${info.advice}`;
+            document.getElementById('zdZhihua').innerHTML = `🛡️ 民俗制化重點：<strong>${info.zhihua}</strong>`;
+            document.getElementById('zdRecText').innerHTML = `🪔 推薦聖燈：<strong>${info.recLabel}</strong>`;
+            document.getElementById('btnApplyZodiacText').textContent = `一鍵將「屬${zodiac}（${info.mainStar}）」推薦聖燈帶入第 1 位祈福人`;
 
             if (membersList.length > 0) {
                 membersList[0].zodiac = zodiac;
