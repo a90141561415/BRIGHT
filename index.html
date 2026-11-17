@@ -1701,14 +1701,14 @@
                 </button>
             </div>
 
-            <!-- 生肖詳細運勢面板 (預設展示值太歲「羊」) -->
-            <div class="zodiac-detail-panel" id="zodiacDetailPanel">
-                <div class="zd-header">
-                    <div class="zd-title-group">
-                        <span class="zd-big-emoji" id="zdEmoji">🐑</span>
-                        <div>
-                            <div class="zd-name serif" id="zdTitle">未羊｜2027 丁未年流年運勢</div>
-                            <div class="zd-years" id="zdYears">對應年份：1943、1955、1967、1979、1991、2003、2015、2027</div>
+                    <div class="inv-bar-top">
+                        <span class="inv-bar-title">🏮 本寺七大聖燈即時可登記餘額（與後台試算表即時連動）</span>
+                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                            <span id="invConnectionBadge" style="font-size:12px; font-weight:700; padding:4px 10px; border-radius:999px; background:#FFF8E6; border:1px solid #E5C16C; color:#7A520A;">🟡 使用預設燈座配額</span>
+                            <button type="button" class="btn-refresh-inv" id="btnRefreshInv" onclick="fetchLiveInventory(true)">
+                                <span>🔄</span>
+                                <span>重新整理最新燈座餘額</span>
+                            </button>
                         </div>
                     </div>
                     <div class="zd-badges-wrap">
@@ -1797,8 +1797,8 @@
                     <!-- 紫蓮寺匯款帳戶卡片 -->
                     <div class="bank-info-card">
                         <div class="bank-details">
-                            <div><strong>🏦 結緣金匯款帳戶：</strong>郵局 (700) / 紫蓮寺專戶</div>
-                            <div><strong>💳 匯款帳號：</strong><span style="font-family:monospace; font-size:15px; font-weight:800;">0001234-0567890</span></div>
+                            <div><strong>🏦 結緣金匯款帳戶：</strong>台灣銀行 (004) / 紫蓮寺專戶</div>
+                            <div><strong>💳 匯款帳號：</strong><span style="font-family:monospace; font-size:15px; font-weight:800;">004-001-20278888</span></div>
                             <div><strong>🏛️ 戶名：</strong>西方直轄無極紫蓮寺</div>
                         </div>
                         <button type="button" class="btn-copy-bank" onclick="copyBankAccount()">📋 複製匯款帳號</button>
@@ -1929,9 +1929,9 @@
     </main>
 
     <!-- =========================================================
-         頁尾 (莊嚴寺廟落款 + 手機底部安全留白緩衝)
+         頁尾 (莊嚴落款 + 手機底部安全留白緩衝)
          ========================================================= -->
-    <footer class="site-footer">
+    <footer class="site-footer" style="padding-bottom: calc(120px + env(safe-area-inset-bottom, 20px));">
         <div class="footer-temple serif">西方直轄無極紫蓮寺</div>
         <p>2027 丁未羊年・值年太歲繆丙大將軍・七大祈福聖燈線上登記</p>
         <p style="margin-top:4px;">願以此善緣迴向十方，祈求風調雨順、國泰民安、闔家康泰。</p>
@@ -1943,7 +1943,7 @@
            ========================================================= */
         const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby0gYLA3kZCbACY4yS-XHsJI2bwyjLNrUnVLoiRBsTjiNdYyBxln-SvpdGiMlO0PTaE/exec";
         const OFFICIAL_LINE_URL = "https://lin.ee/5ngRiaw";
-        const TEMPLE_BANK_ACCOUNT = "0001234-0567890";
+        const TEMPLE_BANK_ACCOUNT = "004-001-20278888";
         const LAMP_PRICE = 800;
 
         /* =========================================================
@@ -2179,6 +2179,7 @@
            ========================================================= */
         async function fetchLiveInventory(isManual = false) {
             const statusTextEl = document.getElementById('invSyncStatusText');
+            const connBadgeEl = document.getElementById('invConnectionBadge');
             const refreshBtn = document.getElementById('btnRefreshInv');
             if (refreshBtn) refreshBtn.disabled = true;
             if (statusTextEl) {
@@ -2207,6 +2208,12 @@
 
                     const now = new Date();
                     const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+                    if (connBadgeEl) {
+                        connBadgeEl.textContent = '🟢 庫存已與廟方試算表同步';
+                        connBadgeEl.style.background = '#EDFBF2';
+                        connBadgeEl.style.borderColor = '#84D9A6';
+                        connBadgeEl.style.color = '#0B7A37';
+                    }
                     if (statusTextEl) {
                         statusTextEl.innerHTML = `✅ 已同步最新燈座餘額（更新時間：<strong>${timeStr}</strong>）`;
                     }
@@ -2217,12 +2224,17 @@
                     throw new Error('Invalid inventory payload');
                 }
             } catch (err) {
-                // 若後端尚未部署新版 doGet，仍維持預設上限並正常運作
+                if (connBadgeEl) {
+                    connBadgeEl.textContent = '🟡 使用預設燈座配額';
+                    connBadgeEl.style.background = '#FFF8E6';
+                    connBadgeEl.style.borderColor = '#E5C16C';
+                    connBadgeEl.style.color = '#7A520A';
+                }
                 if (statusTextEl) {
-                    statusTextEl.textContent = '🟢 目前顯示本寺標準燈座名額（送出時將再次即時核對餘額）';
+                    statusTextEl.textContent = '🟡 目前顯示本寺標準燈座配額（送出時將再次核對餘額）';
                 }
                 if (isManual) {
-                    showToast('已完成燈座狀態檢查');
+                    showToast('目前使用預設燈座配額');
                 }
             } finally {
                 if (refreshBtn) refreshBtn.disabled = false;
@@ -2951,46 +2963,58 @@
 
             const grandTotalAmount = grandTotalCount * LAMP_PRICE;
 
-            // 4. 透過 CORS-safe text/plain 送出整戶批次資料至後端 LockService 檢查與寫入
+            // 4. 透過雙軌相容格式逐筆依序送出 (頂層欄位 + records 陣列皆帶完整單筆資料，相容所有版本 Apps Script 絕不出現 undefined)
+            let cloudSynced = false;
             try {
-                const response = await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify({
-                        action: 'registerBatch',
-                        records: memberPayloads
-                    })
-                });
+                let latestRemainingFromServer = null;
 
-                const result = await response.json();
+                for (let idx = 0; idx < memberPayloads.length; idx++) {
+                    const singleRecord = memberPayloads[idx];
+                    const dualCompatibleBody = {
+                        ...singleRecord,
+                        action: 'registerSingle',
+                        records: [singleRecord]
+                    };
 
-                // 若後端發現燈座剛被其他人搶先登記額滿，立即攔截並更新餘額
-                if (result && result.status === 'soldout') {
-                    if (result.remaining) {
-                        Object.keys(DEFAULT_LAMP_CAPS).forEach(k => {
-                            if (typeof result.remaining[k] === 'number') {
-                                lampRemaining[k] = Math.max(0, result.remaining[k]);
-                            }
-                        });
+                    const response = await fetch(APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify(dualCompatibleBody)
+                    });
+
+                    const result = await response.json();
+
+                    // 若後端發現燈座剛被其他人搶先登記額滿，立即攔截並更新餘額
+                    if (result && result.status === 'soldout') {
+                        if (result.remaining) {
+                            Object.keys(DEFAULT_LAMP_CAPS).forEach(k => {
+                                if (typeof result.remaining[k] === 'number') {
+                                    lampRemaining[k] = Math.max(0, result.remaining[k]);
+                                }
+                            });
+                        }
+                        clampAllMembersToInventory();
+                        renderInventoryStatusBar();
+                        renderAllMembers();
+                        submitBtn.disabled = (lampRemaining.guangming ?? 0) <= 0;
+                        submitBtn.textContent = '🪔 虔誠點燈・送出報名並生成疏文';
+                        showToast(`⚠️ ${result.message || '部分燈座剛被登記額滿，已為您更新最新餘額，請確認後再送出！'}`);
+                        return;
                     }
-                    clampAllMembersToInventory();
-                    renderInventoryStatusBar();
-                    renderAllMembers();
-                    submitBtn.disabled = (lampRemaining.guangming ?? 0) <= 0;
-                    submitBtn.textContent = '🪔 虔誠點燈・送出報名並生成疏文';
-                    showToast(`⚠️ ${result.message || '部分燈座剛被登記額滿，已為您更新最新餘額，請確認後再送出！'}`);
-                    return;
+
+                    if (result && result.remaining) {
+                        latestRemainingFromServer = result.remaining;
+                    }
                 }
 
-                // 若後端回傳最新餘額，立即同步更新畫面
-                if (result && result.remaining) {
+                cloudSynced = true;
+                if (latestRemainingFromServer) {
                     Object.keys(DEFAULT_LAMP_CAPS).forEach(k => {
-                        if (typeof result.remaining[k] === 'number') {
-                            lampRemaining[k] = Math.max(0, result.remaining[k]);
+                        if (typeof latestRemainingFromServer[k] === 'number') {
+                            lampRemaining[k] = Math.max(0, latestRemainingFromServer[k]);
                         }
                     });
                 } else {
-                    // 扣除本次已登記數量
                     Object.keys(aggregatedLamps).forEach(k => {
                         lampRemaining[k] = Math.max(0, (lampRemaining[k] ?? 0) - aggregatedLamps[k]);
                     });
@@ -3011,7 +3035,6 @@
                 });
 
             } catch (err) {
-                // 網路不穩或跨域限制時，仍允許完成疏文生成並引導傳送官方 LINE 核對
                 Object.keys(aggregatedLamps).forEach(k => {
                     lampRemaining[k] = Math.max(0, (lampRemaining[k] ?? 0) - aggregatedLamps[k]);
                 });
