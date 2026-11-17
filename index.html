@@ -1701,14 +1701,14 @@
                 </button>
             </div>
 
-                    <div class="inv-bar-top">
-                        <span class="inv-bar-title">🏮 本寺七大聖燈即時可登記餘額（與後台試算表即時連動）</span>
-                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-                            <span id="invConnectionBadge" style="font-size:12px; font-weight:700; padding:4px 10px; border-radius:999px; background:#FFF8E6; border:1px solid #E5C16C; color:#7A520A;">🟡 使用預設燈座配額</span>
-                            <button type="button" class="btn-refresh-inv" id="btnRefreshInv" onclick="fetchLiveInventory(true)">
-                                <span>🔄</span>
-                                <span>重新整理最新燈座餘額</span>
-                            </button>
+            <!-- 12生肖運勢與歲君十二神詳解面板 (獨立完整結構，確保切換正常) -->
+            <div class="zodiac-detail-panel" id="zodiacDetailPanel">
+                <div class="zd-header">
+                    <div class="zd-title-group">
+                        <span class="zd-big-emoji" id="zdEmoji">🐑</span>
+                        <div>
+                            <div class="zd-name serif" id="zdTitle">未羊｜2027 丁未年流年運勢</div>
+                            <div class="zd-years" id="zdYears">對應年份：1943、1955、1967、1979、1991、2003、2015、2027</div>
                         </div>
                     </div>
                     <div class="zd-badges-wrap">
@@ -1755,14 +1755,17 @@
                 <p class="section-desc">每位祈福人皆需先點亮主燈【光明燈】，方可解鎖加點其餘六大副燈；燈座餘額與寺廟後台即時同步</p>
             </div>
 
-            <!-- 即時燈座庫存餘額看板 -->
+            <!-- 即時燈座庫存餘額看板 (全站唯一一處，獨立置於登記區最上方) -->
             <div class="inventory-status-bar">
                 <div class="inv-bar-top">
                     <span class="inv-bar-title">🏮 本寺七大聖燈即時可登記餘額（與後台試算表即時連動）</span>
-                    <button type="button" class="btn-refresh-inv" id="btnRefreshInv" onclick="fetchLiveInventory(true)">
-                        <span>🔄</span>
-                        <span>重新整理最新燈座餘額</span>
-                    </button>
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        <span id="invConnectionBadge" style="font-size:12px; font-weight:700; padding:4px 10px; border-radius:999px; background:#FFF8E6; border:1px solid #E5C16C; color:#7A520A;">🟡 使用預設燈座配額</span>
+                        <button type="button" class="btn-refresh-inv" id="btnRefreshInv" onclick="fetchLiveInventory(true)">
+                            <span>🔄</span>
+                            <span>重新整理最新燈座餘額</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="inv-pills-grid" id="invPillsGrid"></div>
                 <div class="inv-sync-note">
@@ -2156,9 +2159,16 @@
         let lastOrderSummary = null;
 
         /* =========================================================
-           4. 初始化：建立第 1 位祈福人並向後台同步即時燈座餘額
+           4. 初始化：綁定生肖切換、建立第 1 位祈福人並向後台同步即時燈座餘額
            ========================================================= */
         document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('#zodiacGrid .zodiac-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const z = btn.getAttribute('data-zodiac');
+                    if (z) selectZodiac(z);
+                });
+            });
+            selectZodiac('羊');
             renderInventoryStatusBar();
             addFamilyMember(true);
             fetchLiveInventory(false);
