@@ -398,7 +398,7 @@
             border: 1px solid var(--border-light);
             border-radius: var(--radius-md);
             padding: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .converter-controls {
@@ -488,6 +488,12 @@
             gap: 3px;
             cursor: pointer;
             transition: all 0.18s;
+            user-select: none;
+        }
+
+        /* 確保按鈕內部子元素不攔截點擊事件，點任何位置都直接觸發按鈕 */
+        .zodiac-btn > * {
+            pointer-events: none;
         }
 
         .zodiac-btn:hover {
@@ -498,7 +504,44 @@
         .zodiac-btn.active {
             background: var(--purple-light);
             border-color: var(--purple-main);
-            box-shadow: 0 4px 12px rgba(91, 58, 102, 0.18);
+            box-shadow: 0 4px 12px rgba(91, 58, 102, 0.22);
+        }
+
+        /* 2027 丁未年犯太歲四大生肖（羊、牛、狗、鼠）專屬硃砂紅金漸層填充 */
+        .zodiac-btn.fan-taisui {
+            background: linear-gradient(145deg, #9E261C 0%, #731811 100%);
+            border: 2px solid #E8C066;
+            box-shadow: 0 4px 12px rgba(168, 50, 38, 0.25);
+        }
+
+        .zodiac-btn.fan-taisui:hover {
+            background: linear-gradient(145deg, #B22C20 0%, #831B13 100%);
+            border-color: #FFE8A3;
+            transform: translateY(-2px);
+        }
+
+        .zodiac-btn.fan-taisui .z-name {
+            color: #FFFFFF;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+        }
+
+        .zodiac-btn.fan-taisui .z-star-sub {
+            color: #FFE8A3;
+        }
+
+        .zodiac-btn.fan-taisui .z-tag.tag-fan {
+            background: #FFE8A3;
+            color: #4A120D;
+            border: 1px solid #FFF8DC;
+            font-weight: 800;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.22);
+        }
+
+        .zodiac-btn.fan-taisui.active {
+            background: linear-gradient(145deg, #8F1E15 0%, #5E110B 100%);
+            border: 2.5px solid #FFE8A3;
+            box-shadow: 0 0 0 3px #E8C066, 0 8px 20px rgba(168, 50, 38, 0.45);
+            transform: translateY(-2px);
         }
 
         .z-emoji {
@@ -547,6 +590,43 @@
             border: 1.5px solid #D9C6E0;
             border-radius: var(--radius-md);
             padding: 18px;
+            transition: all 0.25s ease;
+        }
+
+        /* 犯太歲四大生肖選中時，診斷詳解卡同步切換為暖紅金漸層底色與硃砂邊框 */
+        .zodiac-detail-panel.is-fan-taisui {
+            background: linear-gradient(135deg, #FFF5F3 0%, #FDE8E4 100%);
+            border: 2px solid #A83226;
+            box-shadow: 0 6px 20px rgba(168, 50, 38, 0.16);
+        }
+
+        .zodiac-detail-panel.is-fan-taisui .zd-name {
+            color: #8A1B12;
+        }
+
+        .zodiac-detail-panel.is-fan-taisui .zd-status-badge.tag-fan {
+            background: linear-gradient(135deg, #9E261C, #731811);
+            color: #FFE8A3;
+            border: 1px solid #E8C066;
+        }
+
+        .zd-fan-alert {
+            display: none;
+            background: linear-gradient(135deg, #9E261C, #731811);
+            color: #FFE8A3;
+            border: 1px solid #E8C066;
+            border-radius: var(--radius-sm);
+            padding: 9px 13px;
+            margin-bottom: 13px;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .zodiac-detail-panel.is-fan-taisui .zd-fan-alert {
+            display: flex;
         }
 
         .zd-header {
@@ -1667,12 +1747,12 @@
     <main class="main-container">
 
         <!-- =====================================================================
-             區塊一：2027 丁未羊年・出生年份換算 
+             區塊一：2027 丁未羊年・出生年份換算 ＆ 12生肖與十二神煞診斷
              ===================================================================== -->
         <section id="zodiacSection" class="card-box">
             <div class="section-header">
                 <span class="section-tag">2027 丁未羊年流年運勢與歲君十二神</span>
-                <h2 class="section-title serif">出生年份換算 </h2>
+                <h2 class="section-title serif">出生年份換算 ＆ 12生肖與十二神煞診斷</h2>
                 <p class="section-desc">輸入西元或民國出生年份自動換算，或直接點選下方生肖查看十二神煞解析與點燈建議</p>
             </div>
 
@@ -1680,7 +1760,7 @@
             <div class="solar-notice">
                 <span style="font-size:19px;">📅</span>
                 <div>
-                    <strong>節氣交界與流年起算提醒：</strong>2027 年為歲次丁未（羊年），命理流年從國曆 <strong>2027年2月4日（立春）</strong> 開始起算（農曆正月初一為 <strong>2027年2月6日</strong>）。
+                    <strong>節氣交界與流年起算提醒：</strong>2027 年為歲次丁未（羊年），命理流年從國曆 <strong>2027年2月4日（立春）</strong> 開始起算（農曆正月初一為 <strong>2027年2月6日</strong>）。「十二神煞（歲君十二神）」自當年太歲地支（未）輪轉排入十二生肖；凡於每年立春前出生者，生肖仍屬前一年份。
                 </div>
             </div>
 
@@ -1699,19 +1779,19 @@
                 </div>
             </div>
 
-            <!-- 12生肖快捷按鈕網格 (子鼠～亥豬，含歲君十二神主星) -->
+            <!-- 12生肖快捷按鈕網格 (子鼠～亥豬，犯太歲四生肖採紅金漸層填充) -->
             <div class="zodiac-grid" id="zodiacGrid">
-                <button type="button" class="zodiac-btn" data-zodiac="鼠" onclick="selectZodiac('鼠')">
+                <button type="button" class="zodiac-btn fan-taisui" data-zodiac="鼠" onclick="selectZodiac('鼠')">
                     <span class="z-emoji">🐭</span>
                     <span class="z-name serif">子鼠</span>
                     <span class="z-star-sub">主星：死符</span>
-                    <span class="z-tag tag-fan">害太歲</span>
+                    <span class="z-tag tag-fan">🏮 害太歲</span>
                 </button>
-                <button type="button" class="zodiac-btn" data-zodiac="牛" onclick="selectZodiac('牛')">
+                <button type="button" class="zodiac-btn fan-taisui" data-zodiac="牛" onclick="selectZodiac('牛')">
                     <span class="z-emoji">🐮</span>
                     <span class="z-name serif">丑牛</span>
                     <span class="z-star-sub">主星：歲破</span>
-                    <span class="z-tag tag-fan">沖／刑太歲</span>
+                    <span class="z-tag tag-fan">🏮 沖／刑太歲</span>
                 </button>
                 <button type="button" class="zodiac-btn" data-zodiac="虎" onclick="selectZodiac('虎')">
                     <span class="z-emoji">🐯</span>
@@ -1743,11 +1823,11 @@
                     <span class="z-star-sub">主星：病符</span>
                     <span class="z-tag tag-noble">六合／制病符</span>
                 </button>
-                <button type="button" class="zodiac-btn active" data-zodiac="羊" onclick="selectZodiac('羊')">
+                <button type="button" class="zodiac-btn fan-taisui active" data-zodiac="羊" onclick="selectZodiac('羊')">
                     <span class="z-emoji">🐑</span>
                     <span class="z-name serif">未羊</span>
                     <span class="z-star-sub">主星：太歲</span>
-                    <span class="z-tag tag-fan">值太歲</span>
+                    <span class="z-tag tag-fan">🏮 值太歲</span>
                 </button>
                 <button type="button" class="zodiac-btn" data-zodiac="猴" onclick="selectZodiac('猴')">
                     <span class="z-emoji">🐵</span>
@@ -1761,11 +1841,11 @@
                     <span class="z-star-sub">主星：喪門</span>
                     <span class="z-tag tag-warn">文昌／制喪門</span>
                 </button>
-                <button type="button" class="zodiac-btn" data-zodiac="狗" onclick="selectZodiac('狗')">
+                <button type="button" class="zodiac-btn fan-taisui" data-zodiac="狗" onclick="selectZodiac('狗')">
                     <span class="z-emoji">🐶</span>
                     <span class="z-name serif">戌狗</span>
                     <span class="z-star-sub">主星：太陰</span>
-                    <span class="z-tag tag-fan">刑／破太歲</span>
+                    <span class="z-tag tag-fan">🏮 刑／破太歲</span>
                 </button>
                 <button type="button" class="zodiac-btn" data-zodiac="豬" onclick="selectZodiac('豬')">
                     <span class="z-emoji">🐷</span>
@@ -1775,8 +1855,13 @@
                 </button>
             </div>
 
-            <!-- 生肖診斷詳解卡 (zodiac-detail-panel) -->
-            <div class="zodiac-detail-panel" id="zodiacDetailPanel">
+            <!-- 生肖診斷詳解卡 (zodiacDetailPanel) -->
+            <div class="zodiac-detail-panel is-fan-taisui" id="zodiacDetailPanel">
+                <div class="zd-fan-alert" id="zdFanAlert">
+                    <span>🏮</span>
+                    <span>2027 丁未年犯太歲重點提醒：此生肖流年沖犯歲君，建議優先安奉【太歲燈】化解沖煞！</span>
+                </div>
+
                 <div class="zd-header">
                     <div class="zd-title-group">
                         <span class="zd-big-emoji" id="zdEmoji">🐑</span>
@@ -1829,7 +1914,7 @@
                 <p class="section-desc">每位祈福人皆需先點亮主燈【光明燈】（1 盞），方可解鎖點選其餘六大副燈（各限 1 盞）；燈座餘額與寺廟後台即時同步</p>
             </div>
 
-            <!-- 頂部即時庫存看板 (全站僅出現一次，獨立於生肖區塊之外) -->
+            <!-- 頂部即時庫存看板 -->
             <div class="inventory-status-bar">
                 <div class="inv-bar-top">
                     <span class="inv-bar-title">🏮 本寺七大聖燈即時可登記餘額（與後台試算表即時連動）</span>
@@ -2045,7 +2130,7 @@
             '羊': {
                 branch: '未羊', emoji: '🐑', years: '1943、1955、1967、1979、1991、2003、2015、2027',
                 mainStar: '太歲',
-                statusText: '值太歲（本命年）', statusClass: 'tag-fan',
+                statusText: '值太歲（本命年）', statusClass: 'tag-fan', isFanTaiSui: true,
                 goodStars: ['華蓋', '歲駕'],
                 badStars: ['劍鋒', '伏尸'],
                 fortune: '伴隨華蓋、歲駕、劍鋒、伏尸。責任與壓力放大，宜沈澱進修、忌盲目擴張，留意血光與身心疲勞。',
@@ -2057,7 +2142,7 @@
             '猴': {
                 branch: '申猴', emoji: '🐵', years: '1944、1956、1968、1980、1992、2004、2016',
                 mainStar: '太陽',
-                statusText: '平穩（無直接沖合）', statusClass: 'tag-noble',
+                statusText: '平穩（無直接沖合）', statusClass: 'tag-noble', isFanTaiSui: false,
                 goodStars: ['太陽', '紅鸞'],
                 badStars: ['劫煞', '天空'],
                 fortune: '伴隨紅鸞、劫煞、天空。太陽照臨、人緣與桃花旺，但防應酬破財或情緒波動。',
@@ -2069,7 +2154,7 @@
             '雞': {
                 branch: '酉雞', emoji: '🐔', years: '1945、1957、1969、1981、1993、2005、2017',
                 mainStar: '喪門',
-                statusText: '平穩（制喪門・文昌護持）', statusClass: 'tag-warn',
+                statusText: '平穩（制喪門・文昌護持）', statusClass: 'tag-warn', isFanTaiSui: false,
                 goodStars: ['天乙貴人', '文昌'],
                 badStars: ['喪門', '地喪'],
                 fortune: '伴隨天乙貴人、文昌、地喪。雖有喪門星，但得丁年雙貴人與文昌護持，利於考試進修，多關心家中長輩健康。',
@@ -2081,7 +2166,7 @@
             '狗': {
                 branch: '戌狗', emoji: '🐶', years: '1946、1958、1970、1982、1994、2006、2018',
                 mainStar: '太陰',
-                statusText: '刑太歲、破太歲', statusClass: 'tag-fan',
+                statusText: '刑太歲、破太歲', statusClass: 'tag-fan', isFanTaiSui: true,
                 goodStars: ['太陰', '地解'],
                 badStars: ['貫索', '勾神'],
                 fortune: '伴隨地解、貫索、勾神。有女性貴人相助，但易受人際或合夥牽連，切忌作保、借貸或簽署模糊合約。',
@@ -2093,7 +2178,7 @@
             '豬': {
                 branch: '亥豬', emoji: '🐷', years: '1947、1959、1971、1983、1995、2007、2019',
                 mainStar: '五鬼',
-                statusText: '三合太歲（亥卯未・制五鬼）', statusClass: 'tag-warn',
+                statusText: '三合太歲（亥卯未・制五鬼）', statusClass: 'tag-warn', isFanTaiSui: false,
                 goodStars: ['天乙貴人', '三台'],
                 badStars: ['五鬼', '官符', '指背'],
                 fortune: '伴隨天乙貴人、三台、官符、指背。事業有貴人提拔與升遷機會，但易招小人嫉妒與文書是非，處事須依規矩。',
@@ -2105,7 +2190,7 @@
             '鼠': {
                 branch: '子鼠', emoji: '🐭', years: '1936、1948、1960、1972、1984、1996、2008、2020',
                 mainStar: '死符',
-                statusText: '害太歲（子未害・制死符）', statusClass: 'tag-fan',
+                statusText: '害太歲（子未害・制死符）', statusClass: 'tag-fan', isFanTaiSui: true,
                 goodStars: ['月德'],
                 badStars: ['死符', '小耗', '咸池'],
                 fortune: '伴隨月德、小耗、咸池。防暗中溝通誤會、爛桃花與小額破財，幸有大吉星月德逢凶化吉。',
@@ -2117,7 +2202,7 @@
             '牛': {
                 branch: '丑牛', emoji: '🐮', years: '1937、1949、1961、1973、1985、1997、2009、2021',
                 mainStar: '歲破',
-                statusText: '沖太歲、刑太歲', statusClass: 'tag-fan',
+                statusText: '沖太歲、刑太歲', statusClass: 'tag-fan', isFanTaiSui: true,
                 goodStars: ['唐符'],
                 badStars: ['歲破', '大耗', '欄干'],
                 fortune: '伴隨大耗、唐符、欄干。變動最大的一宮（易有搬家、轉職或大筆開銷），宜主動求變、預留緊急預備金。',
@@ -2129,7 +2214,7 @@
             '虎': {
                 branch: '寅虎', emoji: '🐯', years: '1938、1950、1962、1974、1986、1998、2010、2022',
                 mainStar: '龍德',
-                statusText: '平穩（紫微天喜高照）', statusClass: 'tag-noble',
+                statusText: '平穩（紫微天喜高照）', statusClass: 'tag-noble', isFanTaiSui: false,
                 goodStars: ['龍德', '紫微', '天喜'],
                 badStars: ['暴敗'],
                 fortune: '伴隨紫微、天喜、暴敗。雙大吉星與喜星高照，貴人運強、利婚嫁喜慶或事業突破，但順境中忌得意忘形。',
@@ -2141,7 +2226,7 @@
             '兔': {
                 branch: '卯兔', emoji: '🐰', years: '1939、1951、1963、1975、1987、1999、2011、2023',
                 mainStar: '白虎',
-                statusText: '三合太歲（亥卯未・祭白虎）', statusClass: 'tag-warn',
+                statusText: '三合太歲（亥卯未・祭白虎）', statusClass: 'tag-warn', isFanTaiSui: false,
                 goodStars: ['將星', '金匱'],
                 badStars: ['白虎', '血刃', '浮沉'],
                 fortune: '伴隨將星、金匱、血刃、浮沉。權責提升、利於存錢理財與合作；白虎與血刃主意外跌撞或金屬小傷，注意交通安全。',
@@ -2153,7 +2238,7 @@
             '龍': {
                 branch: '辰龍', emoji: '🐲', years: '1940、1952、1964、1976、1988、2000、2012、2024',
                 mainStar: '福德',
-                statusText: '平穩（天德福星高照）', statusClass: 'tag-noble',
+                statusText: '平穩（天德福星高照）', statusClass: 'tag-noble', isFanTaiSui: false,
                 goodStars: ['福德', '天德', '福星'],
                 badStars: ['卷舌', '絞煞'],
                 fortune: '伴隨天德、福星、卷舌、絞煞。福星高照、整體順遂，唯一破口在口舌是非，謹言慎行即可。',
@@ -2165,7 +2250,7 @@
             '蛇': {
                 branch: '巳蛇', emoji: '🐍', years: '1941、1953、1965、1977、1989、2001、2013、2025',
                 mainStar: '天狗',
-                statusText: '平穩（驛馬八座・祭天狗）', statusClass: 'tag-warn',
+                statusText: '平穩（驛馬八座・祭天狗）', statusClass: 'tag-warn', isFanTaiSui: false,
                 goodStars: ['驛馬', '八座'],
                 badStars: ['天狗', '吊客'],
                 fortune: '伴隨驛馬、八座、吊客。利於外出發展、出差或調動；天狗與吊客提醒出門在外注意行車安全與隨身財物。',
@@ -2177,7 +2262,7 @@
             '馬': {
                 branch: '午馬', emoji: '🐴', years: '1942、1954、1966、1978、1990、2002、2014、2026',
                 mainStar: '病符',
-                statusText: '六合太歲（午未合・制病符）', statusClass: 'tag-noble',
+                statusText: '六合太歲（午未合・制病符）', statusClass: 'tag-noble', isFanTaiSui: false,
                 goodStars: ['祿神（丁年祿在午）', '陌越'],
                 badStars: ['病符'],
                 fortune: '伴隨祿神（丁年祿在午）、陌越。走過前一年本命年後運勢大幅回升，財祿與合作順暢，唯須注意過勞與舊疾復發。',
@@ -2233,13 +2318,6 @@
            4. 初始化
            ===================================================================== */
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('#zodiacGrid .zodiac-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const z = btn.getAttribute('data-zodiac');
-                    if (z) selectZodiac(z);
-                });
-            });
-
             selectZodiac('羊');
             renderInventoryStatusBar();
             addFamilyMember(true);
@@ -2309,7 +2387,7 @@
                     connBadgeEl.style.color = '#7A520A';
                 }
                 if (statusTextEl) {
-                    statusTextEl.innerHTML = 'ℹ️ 目前顯示本寺標準配額（光明/太歲/消災各52盞，智慧/藥師各26盞，元辰32盞，財神72盞）';
+                    statusTextEl.innerHTML = 'ℹ️ 目前顯示本寺即時可登記燈座餘額';
                 }
                 if (isManual) showToast('已重新整理燈座顯示狀態');
             } finally {
@@ -2365,11 +2443,10 @@
 
             grid.innerHTML = LAMP_META.map(meta => {
                 const rem = lampRemaining[meta.id] ?? 0;
-                const cap = lampCaps[meta.id] ?? DEFAULT_LAMP_CAPS[meta.id];
                 const isSoldOut = rem <= 0;
                 const isLow = !isSoldOut && rem <= 5;
                 const cls = isSoldOut ? 'inv-pill-item soldout' : (isLow ? 'inv-pill-item low' : 'inv-pill-item');
-                const countLabel = isSoldOut ? '已額滿' : `剩 ${rem} / ${cap} 盞`;
+                const countLabel = isSoldOut ? '已額滿' : `剩餘 ${rem} 盞`;
 
                 return `
                     <div class="${cls}">
@@ -2502,25 +2579,44 @@
                 btn.classList.toggle('active', btn.dataset.zodiac === zodiac);
             });
 
-            document.getElementById('zdEmoji').textContent = info.emoji;
-            document.getElementById('zdTitle').textContent = `${info.branch}｜2027 丁未年流年運勢`;
-            document.getElementById('zdYears').textContent = `出生年份：${info.years}`;
-            document.getElementById('zdMainStar').textContent = `歲君十二神：${info.mainStar}`;
+            const detailPanel = document.getElementById('zodiacDetailPanel');
+            if (detailPanel) {
+                detailPanel.classList.toggle('is-fan-taisui', Boolean(info.isFanTaiSui));
+            }
 
+            const zdEmoji = document.getElementById('zdEmoji');
+            const zdTitle = document.getElementById('zdTitle');
+            const zdYears = document.getElementById('zdYears');
+            const zdMainStar = document.getElementById('zdMainStar');
             const badge = document.getElementById('zdBadge');
-            badge.textContent = info.statusText;
-            badge.className = `zd-status-badge ${info.statusClass}`;
-
             const starsBox = document.getElementById('zdStarsBox');
-            const goodHtml = (info.goodStars || []).map(s => `<span class="star-chip-auspicious">吉星・${s}</span>`).join('');
-            const badHtml = (info.badStars || []).map(s => `<span class="star-chip-inauspicious">神煞・${s}</span>`).join('');
-            starsBox.innerHTML = `<span class="zd-stars-label">✨ 伴隨吉凶神煞：</span>${goodHtml}${badHtml}`;
+            const zdFortune = document.getElementById('zdFortune');
+            const zdAdvice = document.getElementById('zdAdvice');
+            const zdZhihua = document.getElementById('zdZhihua');
+            const zdRecText = document.getElementById('zdRecText');
+            const btnApplyText = document.getElementById('btnApplyZodiacText');
 
-            document.getElementById('zdFortune').innerHTML = `<strong>【流年核心提醒】</strong>${info.fortune}`;
-            document.getElementById('zdAdvice').innerHTML = `<strong>【民間制化與紫蓮寺點燈建議】</strong>${info.advice}`;
-            document.getElementById('zdZhihua').innerHTML = `🛡️ 民俗制化重點：<strong>${info.zhihua}</strong>`;
-            document.getElementById('zdRecText').innerHTML = `🪔 推薦聖燈：<strong>${info.recLabel}</strong>`;
-            document.getElementById('btnApplyZodiacText').textContent = `將推薦聖燈帶入第 1 位祈福人（自動選取${info.recLabel}）`;
+            if (zdEmoji) zdEmoji.textContent = info.emoji;
+            if (zdTitle) zdTitle.textContent = `${info.branch}｜2027 丁未年流年運勢`;
+            if (zdYears) zdYears.textContent = `出生年份：${info.years}`;
+            if (zdMainStar) zdMainStar.textContent = `歲君十二神：${info.mainStar}`;
+
+            if (badge) {
+                badge.textContent = info.statusText;
+                badge.className = `zd-status-badge ${info.statusClass}`;
+            }
+
+            if (starsBox) {
+                const goodHtml = (info.goodStars || []).map(s => `<span class="star-chip-auspicious">吉星・${s}</span>`).join('');
+                const badHtml = (info.badStars || []).map(s => `<span class="star-chip-inauspicious">神煞・${s}</span>`).join('');
+                starsBox.innerHTML = `<span class="zd-stars-label">✨ 伴隨吉凶神煞：</span>${goodHtml}${badHtml}`;
+            }
+
+            if (zdFortune) zdFortune.innerHTML = `<strong>【流年核心提醒】</strong>${info.fortune}`;
+            if (zdAdvice) zdAdvice.innerHTML = `<strong>【民間制化與紫蓮寺點燈建議】</strong>${info.advice}`;
+            if (zdZhihua) zdZhihua.innerHTML = `🛡️ 民俗制化重點：<strong>${info.zhihua}</strong>`;
+            if (zdRecText) zdRecText.innerHTML = `🪔 推薦聖燈：<strong>${info.recLabel}</strong>`;
+            if (btnApplyText) btnApplyText.textContent = `將推薦聖燈帶入第 1 位祈福人（自動選取${info.recLabel}）`;
 
             if (membersList.length > 0) {
                 membersList[0].zodiac = zodiac;
@@ -2819,7 +2915,7 @@
                             </div>
 
                             <div class="form-group form-full">
-                                <label class="form-label" for="mBirth-${m.uid}">農曆生辰／出生年月日 <span class="req">*</span></label>
+                                <label class="form-label" for="mBirth-${m.uid}">農曆生辰／出生年 <span class="req">*</span></label>
                                 <input type="text" id="mBirth-${m.uid}" class="form-control" placeholder="例如：民國80年農曆八月十五吉時" value="${escapeHtml(m.birth)}" oninput="updateMemberField(${m.uid}, 'birth', this.value)" required>
                             </div>
 
